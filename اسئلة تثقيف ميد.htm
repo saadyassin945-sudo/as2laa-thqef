@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<title>Health Education QBank</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#0a0f1f;--bg2:#0a0f1f;--bg3:#0a0f1f;--primary:#4fc3f7;--primary-dark:#0288d1;--accent:#ffd54f;--danger:#ef5350;--success:#66bb6a;--text:#e2e8f0;--muted:#a0aec0;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,0.4);--glow:0 0 25px rgba(79,195,247,0.12);--max-width:600px;--bg-card:rgba(255,255,255,0.06);--border-card:rgba(255,255,255,0.06)}
+body.light{--bg1:#fff;--bg2:#fff;--bg3:#fff;--bg-card:#fff;--border-card:#ccc;--text:#000;--muted:#555;--primary:#1565c0;--primary-dark:#0d47a1;--accent:#f9a825;--danger:#c62828;--success:#2e7d32;--shadow:0 2px 8px rgba(0,0,0,0.08);--glow:none;background:#fff!important;background-image:none!important;animation:none!important}
+body{font-family:"Tahoma","Segoe UI","Cairo",sans-serif;background:var(--bg1);min-height:100vh;color:var(--text);display:flex;flex-direction:column;align-items:center;padding:12px 10px;transition:background .4s,color .3s}
+.app{width:100%;max-width:var(--max-width);position:relative;z-index:1}
+.top-header{text-align:center;padding:8px 0 4px}
+.top-header h1{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+body.light .top-header h1{background:none;-webkit-background-clip:unset;-webkit-text-fill-color:unset;color:#000;text-shadow:none}
+.top-header .sub{font-size:.9rem;color:var(--primary);font-weight:600}
+.top-header .creator{font-size:.7rem;color:var(--muted);margin-top:4px}
+.top-header .creator .name{color:var(--text);font-weight:700}
+body.light .top-header .creator .name{color:#000}
+.theme-toggle-wrap{display:flex;justify-content:flex-end;margin-bottom:6px}
+.theme-toggle{display:flex;background:var(--bg-card);border:1px solid var(--border-card);border-radius:30px;padding:3px;gap:2px}
+.theme-toggle button{background:transparent;border:none;padding:4px 14px;border-radius:30px;font-size:.8rem;color:var(--muted);cursor:pointer;transition:.3s}
+.theme-toggle button.active{background:var(--primary);color:#fff;font-weight:700}
+body.light .theme-toggle button.active{background:#1565c0;color:#fff}
+.card{background:var(--bg-card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--border-card);border-radius:var(--radius);box-shadow:var(--shadow),var(--glow);padding:16px 14px;margin-bottom:14px;transition:transform .2s,background .3s,border .3s;color:var(--text)}
+body.light .card{background:#fff;border:1px solid #ccc;backdrop-filter:none}
+.card-title{margin:0 0 12px;font-size:1rem;border-inline-start:3px solid var(--primary);padding-inline-start:10px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.card-title i{color:var(--accent);margin-left:6px}
+.card-title .select-all-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border-card);color:var(--muted);border-radius:12px;padding:2px 12px;font-size:.7rem;cursor:pointer;transition:.2s;font-weight:600}
+body.light .card-title .select-all-btn{background:#f0f0f0;border-color:#ccc;color:#333}
+.card-title .select-all-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.action-icons{display:flex;justify-content:space-around;gap:6px;flex-wrap:wrap}
+.action-icon{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:6px 14px;border-radius:12px;border:1.5px solid transparent;background:transparent;color:var(--muted);font-size:.7rem;font-weight:600;min-width:56px}
+.action-icon .icon{font-size:1.5rem}
+.action-icon .label{font-size:.55rem}
+.action-icon.active{border-color:var(--primary);background:rgba(79,195,247,0.08)}
+body.light .action-icon.active{border-color:#1565c0;background:#e3f2fd}
+.sub-options{display:none;padding:8px 10px;margin-top:6px;background:rgba(0,0,0,0.15);border-radius:12px;border:1px solid var(--border-card);flex-wrap:wrap;gap:6px;justify-content:center}
+body.light .sub-options{background:#f5f5f5;border-color:#ccc}
+.sub-options.show{display:flex}
+.sub-options .action-btn{border:1px solid var(--border-card);background:rgba(255,255,255,0.03);border-radius:12px;padding:5px 16px;font-size:.75rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+body.light .sub-options .action-btn{background:#fff;border-color:#ccc;color:#333}
+.sub-options .action-btn.active{border-color:var(--primary);background:rgba(79,195,247,0.12);color:var(--text)}
+body.light .sub-options .action-btn.active{border-color:#1565c0;background:#bbdefb;color:#000}
+.section-list{display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto}
+.section-item{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border-card);border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .15s;font-size:.85rem;color:var(--text);gap:8px}
+body.light .section-item{border-color:#ccc}
+.section-item.active{border-color:var(--primary);background:rgba(79,195,247,0.08)}
+body.light .section-item.active{border-color:#1565c0;background:#e3f2fd}
+.section-item .sec-title{flex:1;text-align:right;font-weight:600;line-height:1.4}
+.section-item .cnt{background:rgba(255,255,255,0.06);border-radius:30px;padding:2px 10px;font-size:.72rem;color:var(--muted);font-weight:700;min-width:36px;text-align:center}
+body.light .section-item .cnt{background:#ddd;color:#333}
+.section-item .info-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:0 4px}
+.section-item .info-btn:hover{color:var(--primary)}
+#section-explanation{margin-top:12px;padding:16px;background:rgba(0,0,0,0.15);border-radius:var(--radius);border:1px solid var(--border-card);display:none}
+body.light #section-explanation{background:#f5f5f5;border-color:#ccc}
+#section-explanation.show{display:block}
+.explain-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.explain-controls{display:flex;gap:6px;align-items:center}
+.explain-controls .lang-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border-card);color:var(--muted);padding:4px 10px;border-radius:20px;font-size:.7rem;cursor:pointer;font-weight:600}
+body.light .explain-controls .lang-btn{background:#fff;border-color:#ccc;color:#333}
+.explain-controls .lang-btn.active{border-color:var(--primary);background:rgba(79,195,247,0.12);color:var(--text)}
+body.light .explain-controls .lang-btn.active{border-color:#1565c0;background:#bbdefb;color:#000}
+.explain-controls .close-explain{background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer}
+.explain-controls .close-explain:hover{color:var(--danger)}
+#explain-text{font-size:.9rem;line-height:2;color:var(--text);background:rgba(0,0,0,0.1);padding:12px;border-radius:10px;min-height:60px;white-space:pre-wrap}
+#explain-text.en{direction:ltr;text-align:left}
+#explain-text.ar{direction:rtl;text-align:right}
+body.light #explain-text{background:#fff;color:#000;border:1px solid #ccc}
+.big-btn{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(79,195,247,0.25);transition:all .15s;position:relative;overflow:hidden;margin-bottom:14px}
+body.light .big-btn{background:#1565c0;color:#fff;box-shadow:0 2px 8px rgba(21,101,192,0.3)}
+.big-btn.secondary{background:linear-gradient(135deg,#4a5568,#2d3748)}
+body.light .big-btn.secondary{background:#757575}
+.big-btn.warn{background:linear-gradient(135deg,var(--accent),#f57f17)}
+body.light .big-btn.warn{background:#f9a825;color:#000}
+.big-btn:disabled{opacity:.5;cursor:not-allowed}
+.stats-row{display:flex;justify-content:space-around;gap:8px;text-align:center;margin:6px 0}
+.stats-row .stat .num{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,var(--primary),#81d4fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+body.light .stats-row .stat .num{background:none;-webkit-background-clip:unset;-webkit-text-fill-color:unset;color:#000}
+.stats-row .stat .lbl{font-size:.7rem;color:var(--muted)}
+.progress-stats{display:flex;align-items:center;gap:16px}
+.progress-ring{position:relative;width:70px;height:70px;flex-shrink:0}
+.progress-ring svg{transform:rotate(-90deg);width:70px;height:70px}
+.progress-ring .bg{fill:none;stroke:var(--border-card);stroke-width:6}
+body.light .progress-ring .bg{stroke:#ccc}
+.progress-ring .fg{fill:none;stroke:var(--primary);stroke-width:6;stroke-linecap:round;stroke-dasharray:176;stroke-dashoffset:176;transition:stroke-dashoffset .6s}
+body.light .progress-ring .fg{stroke:#1565c0}
+.progress-ring .center-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:var(--text)}
+.weak-link{margin-top:10px;font-size:.75rem;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px}
+.weak-link i{color:var(--accent)}
+.action-row-bottom{display:flex;gap:8px;margin-top:10px}
+.action-row-bottom .big-btn{flex:1;font-size:.75rem;padding:8px;margin-top:0;margin-bottom:0}
+#screen-quiz,#screen-results{display:none}
+#screen-quiz.active,#screen-results.active{display:block}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--muted);margin-bottom:8px}
+#timer-badge{font-weight:600;font-size:.8rem;background:rgba(255,255,255,0.05);padding:2px 12px;border-radius:30px;border:1px solid var(--border-card)}
+body.light #timer-badge{background:#f0f0f0;border-color:#ccc}
+#timer-badge.warn{background:rgba(255,213,79,0.15);border-color:var(--accent);color:var(--accent)}
+#timer-badge.danger{background:rgba(239,83,80,0.2);border-color:var(--danger);color:var(--danger);animation:pulse .7s infinite alternate}
+@keyframes pulse{0%{opacity:1}100%{opacity:.5}}
+.progress-wrap{background:rgba(255,255,255,0.06);border-radius:30px;height:4px;overflow:hidden;margin-bottom:12px}
+body.light .progress-wrap{background:#ddd}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));width:0%;transition:width .3s}
+body.light .progress-bar{background:linear-gradient(90deg,#1565c0,#f9a825)}
+.grid-toggle-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border-card);color:var(--primary);padding:3px 10px;border-radius:20px;font-size:.75rem;cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-weight:600;transition:.2s}
+body.light .grid-toggle-btn{background:#e0f7fa;border-color:#b2ebf2;color:#0077a3}
+.grid-toggle-btn:hover{background:rgba(0,212,255,0.15)}
+#questions-grid-container{margin-bottom:12px;padding:12px;background:rgba(0,0,0,0.2);border-radius:12px;border:1px solid var(--border-card);display:none}
+body.light #questions-grid-container{background:#f8fafc;border-color:#ddd}
+#questions-grid-container.show{display:block}
+.grid-title{font-size:.75rem;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.q-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:6px;max-height:160px;overflow-y:auto;padding-right:2px}
+.grid-btn{width:100%;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:.8rem;font-weight:700;border:1px solid var(--border-card);background:rgba(255,255,255,0.03);color:var(--muted);cursor:pointer;transition:all .15s}
+body.light .grid-btn{background:#fff;border-color:#ccc;color:#333}
+.grid-btn:hover{border-color:var(--primary);color:var(--primary)}
+.grid-btn.current{border:2px solid var(--primary)!important;box-shadow:0 0 10px rgba(0,212,255,0.4);font-weight:900}
+.grid-btn.answered-correct{background:rgba(52,211,153,0.15)!important;border-color:var(--success)!important;color:var(--success)!important}
+body.light .grid-btn.answered-correct{background:#e8f5e9!important;border-color:#2e7d32!important;color:#2e7d32!important}
+.grid-btn.answered-wrong{background:rgba(239,83,80,0.15)!important;border-color:var(--danger)!important;color:var(--danger)!important}
+body.light .grid-btn.answered-wrong{background:#ffebee!important;border-color:#c62828!important;color:#c62828!important}
+.q-header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.q-tag{display:inline-block;background:rgba(79,195,247,0.10);color:var(--primary);font-size:.65rem;font-weight:700;padding:2px 12px;border-radius:30px;border:1px solid rgba(79,195,247,0.06)}
+body.light .q-tag{background:#e3f2fd;color:#1565c0;border-color:#bbdefb}
+.q-en{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.6;direction:ltr;text-align:left;word-wrap:break-word}
+.q-ar{font-size:.9rem;color:var(--muted);margin-bottom:14px;line-height:1.7;direction:rtl;text-align:right;word-wrap:break-word}
+.options{display:flex;flex-direction:column;gap:8px}
+.option{display:flex;align-items:center;gap:8px;border:1px solid var(--border-card);border-radius:12px;padding:10px 14px;cursor:pointer;transition:all .15s;background:rgba(255,255,255,0.02);direction:ltr}
+body.light .option{background:#fff;border-color:#ccc}
+.option .opt-en{font-weight:600;color:var(--text);font-size:.9rem;flex:1;direction:ltr;text-align:left}
+.option .opt-ar{color:var(--muted);font-size:.8rem;direction:rtl;text-align:right;flex:1}
+.option .mark{font-size:1.1rem;width:24px;text-align:center;flex-shrink:0}
+.option.selected{border-color:var(--primary);background:rgba(79,195,247,0.06)}
+body.light .option.selected{border-color:#1565c0;background:#e3f2fd}
+.option.correct{border-color:var(--success);background:rgba(102,187,106,0.08)}
+body.light .option.correct{border-color:#2e7d32;background:#e8f5e9}
+.option.wrong{border-color:var(--danger);background:rgba(239,83,80,0.08)}
+body.light .option.wrong{border-color:#c62828;background:#ffebee}
+.option.disabled{cursor:default;opacity:.8}
+.feedback-box{margin-top:12px;padding:12px;border-radius:12px;font-size:.85rem;line-height:1.6}
+.feedback-box.correct{background:rgba(102,187,106,0.08);border:1px solid rgba(102,187,106,0.15);color:#a7f3d0}
+body.light .feedback-box.correct{background:#e8f5e9;border-color:#2e7d32;color:#000}
+.feedback-box.wrong{background:rgba(239,83,80,0.08);border:1px solid rgba(239,83,80,0.15);color:#fecaca}
+body.light .feedback-box.wrong{background:#ffebee;border-color:#c62828;color:#000}
+.feedback-box .fb-title{font-weight:700;margin-bottom:4px}
+.nav-row{display:flex;gap:8px;margin-top:12px}
+.nav-row .big-btn{flex:1;margin-top:0;margin-bottom:0;font-size:.85rem;padding:10px}
+.score-circle{width:120px;height:120px;border-radius:50%;margin:8px auto 14px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:conic-gradient(var(--primary) calc(var(--pct)*1%),rgba(255,255,255,0.04) 0);position:relative}
+body.light .score-circle{background:conic-gradient(#1565c0 calc(var(--pct)*1%),#e0e0e0 0)}
+.score-circle::before{content:"";position:absolute;width:90px;height:90px;background:var(--bg1);backdrop-filter:blur(4px);border-radius:50%;opacity:.85}
+body.light .score-circle::before{background:#fff;opacity:.9}
+.score-circle .pct{position:relative;font-size:1.8rem;font-weight:900;color:#fff}
+body.light .score-circle .pct{color:#000}
+.score-circle .lbl{position:relative;font-size:.7rem;color:var(--muted)}
+.mistake-item{border:1px solid var(--border-card);border-radius:12px;padding:12px;margin-bottom:10px;background:rgba(255,255,255,0.02)}
+body.light .mistake-item{background:#fff;border-color:#ccc}
+.mistake-item .m-q{font-weight:700;margin-bottom:2px;direction:ltr;text-align:left}
+.mistake-item .m-you{color:var(--danger);font-size:.8rem}
+body.light .mistake-item .m-you{color:#c62828}
+.mistake-item .m-correct{color:var(--success);font-size:.8rem}
+body.light .mistake-item .m-correct{color:#2e7d32}
+.mistake-toggle{background:none;border:1px solid var(--border-card);border-radius:8px;padding:4px 12px;cursor:pointer;color:var(--text);font-size:.75rem;margin-top:6px}
+body.light .mistake-toggle{border-color:#ccc;color:#000}
+.mistake-detail{margin-top:10px;border:1px solid var(--border-card);border-radius:10px;padding:12px;background:rgba(255,255,255,0.03);direction:ltr;text-align:left}
+body.light .mistake-detail{background:#f9f9f9;border-color:#ccc}
+.mistake-detail .opt-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border-card)}
+body.light .mistake-detail .opt-row{border-color:#ddd}
+.mistake-detail .opt-row:last-child{border-bottom:none}
+.mistake-detail .opt-label{flex:1}
+.mistake-detail .opt-status{font-size:1rem;margin-left:8px}
+.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);font-size:.7rem;margin-top:20px;margin-bottom:8px;opacity:.6}
+footer .name{color:var(--primary);font-weight:700}
+body.light footer .name{color:#1565c0}
+.word-en{display:inline-block;cursor:default;transition:background .15s,transform .1s;padding:1px 2px;border-radius:4px;direction:ltr}
+.word-en:active{background:rgba(79,195,247,0.15);transform:scale(.97)}
+body.light .word-en:active{background:#bbdefb}
+.word-en.speaking{background:rgba(255,213,79,0.25);box-shadow:0 0 10px rgba(255,213,79,0.2)}
+body.light .word-en.speaking{background:#fff9c4}
+.speech-hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);color:#fff;padding:6px 18px;border-radius:30px;font-size:.8rem;pointer-events:none;opacity:0;transition:opacity .3s;z-index:999;border:1px solid rgba(255,255,255,0.1)}
+body.light .speech-hint{background:#f0f0f0;color:#000;border-color:#ccc}
+.speech-hint.show{opacity:1}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.25);transform:scale(0);animation:rippleAnim .5s linear;pointer-events:none}
+body.light .ripple{background:rgba(0,0,0,0.1)}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0}}
+@media(max-width:480px){body{padding:8px 6px}.app{max-width:100%}.top-header h1{font-size:1.5rem}.card{padding:12px 10px}.action-icon{padding:4px 8px;min-width:44px}.action-icon .icon{font-size:1.2rem}.q-en{font-size:.9rem}.q-ar{font-size:.8rem}.option{padding:8px 10px}.big-btn{font-size:.85rem;padding:10px}.score-circle{width:100px;height:100px}.score-circle::before{width:75px;height:75px}.score-circle .pct{font-size:1.5rem}.progress-ring{width:56px;height:56px}.progress-ring svg{width:56px;height:56px}}
+.tf-badge{display:inline-block;font-size:.6rem;font-weight:700;padding:1px 8px;border-radius:12px;margin-right:6px;background:rgba(79,195,247,0.15);color:var(--primary)}
+body.light .tf-badge{background:#e3f2fd;color:#1565c0}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="top-header"><h1> استعِن باللَّهِ ولا تعجِزْ ♥️ </h1><div class="sub">Health Education </div><div class="creator"><i class="fas fa-user-nurse"></i> Created by <span class="name">MR. YASSIN THARWAT</span></div></div>
+<div class="theme-toggle-wrap"><div class="theme-toggle" id="themeToggle"><button class="active" data-theme="dark" onclick="setTheme('dark')"><i class="fas fa-moon"></i></button><button data-theme="light" onclick="setTheme('light')"><i class="fas fa-sun"></i></button></div></div>
+
+<div id="main-screen">
+<div class="card"><div class="card-title"><i class="fas fa-sliders-h"></i> الإجراءات</div>
+<div class="action-icons">
+<div class="action-icon active" data-target="modeOptions" onclick="toggleOptions('modeOptions')"><span class="icon">🎯</span><span class="label">المذاكرة</span></div>
+<div class="action-icon" data-target="orderOptions" onclick="toggleOptions('orderOptions')"><span class="icon">🔀</span><span class="label">الترتيب</span></div>
+<div class="action-icon" data-target="langOptions" onclick="toggleOptions('langOptions')"><span class="icon">🌐</span><span class="label">اللغة</span></div>
+<div class="action-icon" data-target="timerOptions" onclick="toggleOptions('timerOptions')"><span class="icon">⏱️</span><span class="label">المؤقت</span></div>
+</div>
+<div id="modeOptions" class="sub-options show"><button class="action-btn active" data-mode="practice" onclick="selectMode('practice')">تدريب</button><button class="action-btn" data-mode="test" onclick="selectMode('test')">اختبار</button></div>
+<div id="orderOptions" class="sub-options"><button class="action-btn active" data-order="device" onclick="selectOrder('device')">بالترتيب</button><button class="action-btn" data-order="random" onclick="selectOrder('random')">عشوائي</button></div>
+<div id="langOptions" class="sub-options"><button class="action-btn active" data-translate="yes" onclick="selectTranslate('yes')">ترجمة</button><button class="action-btn" data-translate="no" onclick="selectTranslate('no')">EN</button></div>
+<div id="timerOptions" class="sub-options"><button class="action-btn active" data-timer="0" onclick="selectTimer(0)">تثبيت</button><button class="action-btn" data-timer="5" onclick="selectTimer(5)">5s</button><button class="action-btn" data-timer="10" onclick="selectTimer(10)">10s</button></div>
+</div>
+
+<div class="card"><div class="card-title"><span><i class="fas fa-layer-group"></i> المحاضرات المختارة</span><button class="select-all-btn" id="selectAllBtn" onclick="toggleAllSections()">إلغاء الكل</button></div><div id="section-list" class="section-list"></div>
+<div id="section-explanation"><div class="explain-header"><h3 id="explain-title"></h3><div class="explain-controls"><button class="lang-btn active" data-lang="ar" onclick="setExplainLang('ar')">🇪🇬 عربي</button><button class="lang-btn" data-lang="en" onclick="setExplainLang('en')">🇬🇧 English</button><button class="close-explain" onclick="closeExplanation()"><i class="fas fa-times"></i></button></div></div><div id="explain-text" class="ar"></div></div></div>
+
+<button class="big-btn" onclick="startQuiz()"><i class="fas fa-play"></i> ابدأ المذاكرة</button>
+
+<div class="card" id="progressCard"><div class="card-title"><i class="fas fa-chart-line"></i> تقدمك</div>
+<div class="progress-stats"><div class="progress-ring"><svg viewBox="0 0 70 70"><circle class="bg" cx="35" cy="35" r="28"/><circle class="fg" id="progressCircle" cx="35" cy="35" r="28" stroke-dashoffset="176"/></svg><div class="center-text" id="progressPercent">0<small>%</small></div></div>
+<div class="stats-row" style="flex:1;margin:0;"><div class="stat"><div class="num" id="statAttempted">0</div><div class="lbl">تم حله</div></div><div class="stat"><div class="num" id="statCorrect">0</div><div class="lbl">صح</div></div><div class="stat"><div class="num" id="statWrong">0</div><div class="lbl">غلط</div></div></div></div>
+<div class="weak-link" id="weakLink" onclick="startWeakSectionQuiz()"><i class="fas fa-lightbulb"></i> أضعف نقطة: <span id="weakSectionName">-</span> (<span id="weakSectionRate">0%</span>)</div>
+<div class="action-row-bottom"><button class="big-btn warn" onclick="reviewMistakes()"><i class="fas fa-undo-alt"></i> راجع أخطائي</button><button class="big-btn secondary" onclick="resetProgress()"><i class="fas fa-trash-alt"></i> تصفير</button></div></div>
+</div>
+
+<div id="screen-quiz">
+<div class="quiz-meta">
+  <span id="quiz-position"><i class="fas fa-question-circle"></i> 1 / 10</span>
+  <span id="timer-badge" class="hidden"><i class="fas fa-hourglass-half"></i> 30</span>
+  <span id="quiz-score"><i class="fas fa-check-circle" style="color:var(--success);"></i> 0 <i class="fas fa-times-circle" style="color:var(--danger);margin-right:6px;"></i> 0</span>
+</div>
+<div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+<div id="questions-grid-container">
+  <div class="grid-title">
+    <span><i class="fas fa-th"></i> انتقل مباشرة لأي سؤال:</span>
+    <span style="font-size:0.65rem; color:var(--muted);"><span style="color:var(--success);">صح</span> | <span style="color:var(--danger);">غلط</span></span>
+  </div>
+  <div class="q-grid" id="q-grid-buttons"></div>
+</div>
+
+<div class="card">
+  <div class="q-header">
+    <div class="q-tag" id="q-section-tag"><i class="fas fa-tag"></i> المحاضرة</div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <button class="grid-toggle-btn" id="btn-toggle-trans" onclick="toggleQuizTranslation()"><i class="fas fa-language"></i> ترجمة</button>
+      <button class="grid-toggle-btn" id="btn-toggle-grid" onclick="toggleQuestionsGrid()"><i class="fas fa-th-large"></i> شبكة الأسئلة</button>
+    </div>
+  </div>
+  <div class="q-en" id="q-en"></div>
+  <div class="q-ar" id="q-ar"></div>
+  <div class="options" id="options"></div>
+  <div id="feedback" class="feedback-box hidden"></div>
+  <div class="nav-row">
+    <button class="big-btn secondary" id="btn-quit" onclick="quitQuiz()" style="flex:0 0 60px;"><i class="fas fa-sign-out-alt"></i></button>
+    <button class="big-btn secondary" id="btn-prev" onclick="previousQuestion()" disabled><i class="fas fa-arrow-right"></i></button>
+    <button class="big-btn" id="btn-next" onclick="nextQuestion()" disabled><i class="fas fa-arrow-left"></i> التالي</button>
+  </div>
+</div>
+</div>
+
+<div id="screen-results"><div class="card" style="text-align:center;"><div class="card-title" style="border:none;text-align:center;padding:0;"><i class="fas fa-trophy" style="color:var(--accent);"></i> نتيجتك</div><div class="score-circle" id="score-circle" style="--pct:0;"><div class="pct" id="result-pct">0%</div><div class="lbl">النسبة</div></div><div class="stats-row"><div class="stat"><div class="num" id="res-total">0</div><div class="lbl">إجمالي</div></div><div class="stat"><div class="num" id="res-correct" style="color:var(--success);">0</div><div class="lbl">صح</div></div><div class="stat"><div class="num" id="res-wrong" style="color:var(--danger);">0</div><div class="lbl">غلط</div></div></div><button class="big-btn" onclick="goHome()"><i class="fas fa-home"></i> الرئيسية</button><button class="big-btn warn hidden" id="btn-show-mistakes" onclick="showMistakesList()"><i class="fas fa-list-ul"></i> الأخطاء</button></div><div id="mistakes-list-wrap" class="card hidden"><div class="card-title"><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i> أخطائك</div><div id="mistakes-list"></div></div></div>
+
+<div id="speech-hint" class="speech-hint"><i class="fas fa-volume-up"></i> جارٍ النطق...</div>
+<footer>Created by <span class="name">MR. YASSIN THARWAT</span></footer>
+</div>
+
+<script>
+var L_PFX=["A) ","B) ","C) ","D) "];
+function M(en,opts,c,ex){return{en:en,options:opts.map(function(t,i){return{en:L_PFX[i]+t,correct:i===c}}),explain_ar:ex}}
+function T(en,tr,ex){return{en:en,options:[{en:"True",ar:"صواب",correct:!!tr},{en:"False",ar:"خطأ",correct:!tr}],explain_ar:ex||(tr?"صح.":"خطأ.")}}
+
+const ORIGINAL_BANK=[
+  {
+    name:"المحاضرة 1: Introduction to Health Education",
+    nameEn:"المحاضرة الأولى - Lecture 1: Introduction to Health Education",
+    questions:[
+      // 1. Introduction & Definition
+      M("Health education is best defined as:",["A planned process of teaching and learning that helps people acquire knowledge, develop positive attitudes and adopt healthy behaviors","Simply giving information about diseases","A set of rules enforced on the community","A medical treatment given by doctors only"],0,"عملية تعليم وتعلم مخططة لاكتساب المعرفة والاتجاهات والسلوكيات الصحية."),
+      M("Health education aims to encourage people to make:",["Decisions only after getting a prescription","Voluntary decisions that improve their health","No decisions at all","Compulsory decisions imposed by the educator"],1,"يشجع على قرارات طوعية وليس إجبارية."),
+      M("Health education makes people change their:",["Ill life habits and behaviors, and motivates them to form healthy habits","Medication doses","Place of residence","Medical diagnosis"],0,"تغيير العادات والسلوكيات السيئة وتكوين عادات صحية."),
+      M("Health education empowers individuals to understand their health status and to:",["Depend completely on others for health decisions","Make informed health decisions","Ignore factors that affect health","Avoid all medical care"],1,"من أهدافه اتخاذ قرارات صحية مستنيرة."),
+      M("The term 'patient education' refers to education in:",["Workplaces only","Schools only","Mass media campaigns only","Hospital and clinic settings linked to treatment, medication, home care and rehabilitation"],3,"تعليم المريض مرتبط بالعلاج والأدوية والرعاية المنزلية والتأهيل في المستشفيات والعيادات."),
+      M("A nurse only hands a patient a leaflet and leaves without checking understanding or encouraging decisions. Why is this NOT true health education?",["Because leaflets are forbidden","Because patients never read leaflets","Because health education is not simply giving information","Because only doctors can educate"],2,"التثقيف الصحي ليس مجرد إعطاء معلومات."),
+      T("Health education encourages people to make voluntary decisions that improve their health.",1,"صح."),
+      T("Health education is a planned process of teaching and learning.",1,"صح."),
+      T("Health education is simply giving information to people.",0,"خطأ؛ يهدف لتشجيع قرارات طوعية تحسّن الصحة."),
+      T("Health education aims only to increase knowledge, without changing attitudes or practices.",0,"خطأ؛ يشمل المعرفة والاتجاهات والممارسات."),
+      T("Health education is an essential component of nursing and public health.",1,"صح."),
+      T("Health education forces people to adopt healthy behaviors.",0,"خطأ؛ القرارات طوعية."),
+      T("Patient education refers only to education in schools and universities.",0,"خطأ؛ يشير للمستشفيات والعيادات."),
+      T("Patient education is linked to following treatment, medication, home care and rehabilitation procedures.",1,"صح."),
+      // 2. Importance of Health Education
+      M("Teaching school children the importance of hand washing is an example of:",["Treating infection","Promoting healthy living","Early detection of cancer","Reducing healthcare costs"],1,"مثال على تعزيز الحياة الصحية لتقليل الأمراض المعدية."),
+      M("Educating adults about hypertension risk factors may prevent cardiovascular diseases. This is an example of:",["Improving hospital income","Medical treatment","Early detection by screening","Preventing disease"],3,"مثال على الوقاية من الأمراض."),
+      M("Health education about breast cancer encouraging women to perform breast self-examination is an example of:",["Encouraging early detection","Reducing healthcare costs","Promoting healthy living","Improving quality of life"],0,"تشجيع الكشف المبكر."),
+      M("Which importance of health education is based on the idea that 'prevention is less expensive than treatment'?",["Improves quality of life","Encourages early detection","Reduces healthcare costs","Prevents disease"],2,"تقليل تكاليف الرعاية الصحية."),
+      M("People who understand health issues are better able to maintain:",["Medical records","Financial wellbeing only","Physical wellbeing only","Physical, mental and social wellbeing"],3,"يحسّن جودة الحياة."),
+      M("Healthy habits encouraged by health education include:",["Avoiding checkups","Self-medication","Balanced nutrition, exercise, personal hygiene and adequate sleep","Skipping meals and late sleeping"],2,"من العادات الصحية: التغذية المتوازنة والرياضة والنظافة والنوم الكافي."),
+      M("Healthy behaviors reduce:",["Health awareness","Hospital admissions and medical expenses","Community participation","Quality of life"],1,"السلوكيات الصحية تقلل الدخول للمستشفى والنفقات."),
+      T("Health education discourages regular checkups and screening.",0,"خطأ؛ يزيد الوعي بالفحوصات الدورية."),
+      T("Prevention is less expensive than treatment.",1,"صح."),
+      T("Teaching hand washing to school children can reduce infectious diseases.",1,"صح."),
+      T("Educating adults about hypertension risk factors is an example of encouraging early detection of cancer.",0,"خطأ؛ هو مثال على الوقاية من الأمراض."),
+      T("Health education increases hospital admissions and medical expenses.",0,"خطأ؛ يقللها."),
+      T("Understanding health issues helps people maintain physical, mental and social wellbeing.",1,"صح."),
+      T("Health education helps people understand risk factors and preventive measures.",1,"صح."),
+      T("Teaching breast self-examination is an example of reducing healthcare costs by treating cancer.",0,"خطأ؛ هو مثال على تشجيع الكشف المبكر."),
+      // 3. Objectives of Health Education
+      M("Providing accurate information about causes, symptoms, prevention and treatment is the specific objective:",["Increase knowledge","Develop skills","Encourage community participation","Influence attitudes"],0,"زيادة المعرفة."),
+      M("Developing positive attitudes toward healthy behaviors and encouraging acceptance of health recommendations is:",["Promote healthy practices","Develop skills","Influence attitudes","Increase knowledge"],2,"التأثير على الاتجاهات."),
+      M("Motivating individuals to adopt healthy lifestyles (exercise, nutrition, hygiene) is:",["Promote healthy practices","Increase knowledge","Influence attitudes","Develop skills"],0,"تعزيز الممارسات الصحية."),
+      M("Enabling people to perform activities properly such as breast self-exam, hand washing and insulin administration is:",["Increase knowledge","Influence attitudes","Encourage community participation","Develop skills"],3,"تنمية المهارات."),
+      M("Involving community members in solving health problems and promoting responsibility for community health is:",["Influence attitudes","Encourage community participation","Increase knowledge","Develop skills"],1,"تشجيع المشاركة المجتمعية."),
+      M("Which of the following is a GENERAL objective of health education?",["To encourage appropriate use of health services","To develop skills","To influence attitudes","To increase knowledge"],0,"من الأهداف العامة: الاستخدام المناسب للخدمات الصحية."),
+      M("In a diabetes education program, creating a positive attitude toward blood glucose monitoring corresponds to:",["Encourage community participation","Increase knowledge","Influence attitudes","Develop skills"],2,"يخص الاتجاهات."),
+      M("In a diabetes education program, teaching correct foot care techniques corresponds to:",["Increase knowledge","Develop skills","Influence attitudes","Encourage community participation"],1,"يخص تنمية المهارات."),
+      T("Encouraging community participation means teaching individual skills only.",0,"خطأ؛ يعني إشراك أفراد المجتمع في حل المشكلات."),
+      T("One general objective is to encourage behavior that promotes and maintains health.",1,"صح."),
+      T("Encouraging adherence to treatment plans is part of the diabetes education program example.",1,"صح."),
+      T("Teaching insulin administration is an example of increasing knowledge only.",0,"خطأ؛ هو تنمية مهارات."),
+      T("Teaching insulin administration is an example of developing skills.",1,"صح."),
+      T("One general objective is to discourage the use of health services.",0,"خطأ؛ الهدف تشجيع الاستخدام المناسب."),
+      T("Influencing attitudes includes encouraging acceptance of health recommendations.",1,"صح."),
+      T("Promoting healthy practices means providing information about causes and symptoms of disease.",0,"خطأ؛ هذا زيادة المعرفة."),
+      // 4. Stages of Health Education
+      M("Which is the correct order of the stages of health education?",["Adoption, Trial, Evaluation, Interest, Awareness","Interest, Awareness, Trial, Evaluation, Adoption","Awareness, Evaluation, Interest, Adoption, Trial","Awareness, Interest, Evaluation, Trial, Adoption"],3,"الوعي ثم الاهتمام ثم التقييم ثم التجربة ثم التبني."),
+      M("In which stage does the educator provide health education while the client listens first?",["Trial","Evaluation","Awareness","Interest"],2,"مرحلة الوعي."),
+      M("In which stage are clients motivated and show interest to know the details of the health behavior?",["Awareness","Interest","Trial","Adoption"],1,"مرحلة الاهتمام."),
+      M("In which stage does the client analyze the advantages, disadvantages and barriers of the health behavior?",["Trial","Adoption","Awareness","Evaluation"],3,"مرحلة التقييم."),
+      M("When clients feel the health behavior has more advantages, they try to make it a practice. This is the stage of:",["Trial","Adoption","Interest","Evaluation"],0,"مرحلة التجربة."),
+      M("After practicing the behavior, the healthy habit is formed. This is the stage of:",["Trial","Evaluation","Adoption","Awareness"],2,"مرحلة التبني."),
+      M("A woman weighs the pros and cons of quitting smoking and thinks about what might prevent her. She is in the stage of:",["Evaluation","Interest","Adoption","Awareness"],0,"تحلل المزايا والعيوب والعوائق = تقييم."),
+      T("In the evaluation stage, clients analyze barriers to practicing the health behavior.",1,"صح."),
+      T("In the awareness stage, the client provides the health education and the educator listens.",0,"خطأ؛ المثقف يقدم والعميل يستمع."),
+      T("In the evaluation stage, clients adopt the behavior without analyzing its advantages and disadvantages.",0,"خطأ؛ يحللون المزايا والعيوب."),
+      T("Adoption is the last stage of health education.",1,"صح."),
+      T("Clients show interest in the details of the behavior after they are motivated.",1,"صح."),
+      T("The interest stage comes before the awareness stage.",0,"خطأ؛ الوعي أولاً."),
+      T("The trial stage is when the healthy habit is finally formed.",0,"خطأ؛ تكوين العادة هو مرحلة التبني."),
+      T("Awareness means to know about health-related facts.",1,"صح."),
+      // 5. Settings for Health Education
+      M("Teaching diabetic patients about insulin injection techniques in a clinic is an example of the:",["Educational setting","Workplace setting","Community setting","Healthcare setting"],3,"إعدادات الرعاية الصحية."),
+      M("Teaching students about personal hygiene is an example of the:",["Healthcare setting","Educational setting","Workplace setting","Home setting"],1,"الإعدادات التعليمية."),
+      M("Organizing a campaign about smoking cessation is an example of the:",["Healthcare setting","Educational setting","Home setting","Community setting"],3,"إعدادات المجتمع."),
+      M("Home visits conducted by community health nurses belong to the:",["Home setting","Workplace setting","Community setting","Educational setting"],0,"إعداد المنزل."),
+      M("Occupational health education regarding workplace safety is an example of the:",["Home setting","Healthcare setting","Workplace setting","Educational setting"],2,"مكان العمل."),
+      M("Mosques, churches and youth clubs are examples of:",["Healthcare settings","Community settings","Educational settings","Workplace settings"],1,"أماكن مجتمعية."),
+      M("Factories, companies and government institutions are examples of:",["Healthcare settings","Educational settings","Community settings","Workplace settings"],3,"أماكن العمل."),
+      M("Maternal and child health centers belong to the:",["Healthcare setting","Educational setting","Home setting","Community setting"],0,"من أماكن الرعاية الصحية."),
+      T("Hospitals and health centers are healthcare settings for health education.",1,"صح."),
+      T("Village meeting halls are community settings.",1,"صح."),
+      T("Home visits by community health nurses are a workplace setting.",0,"خطأ؛ هي إعداد المنزل."),
+      T("Occupational safety education is an example of the educational setting.",0,"خطأ؛ هو إعداد مكان العمل."),
+      T("Factories and companies are workplace settings.",1,"صح."),
+      T("Schools and universities are community settings.",0,"خطأ؛ هي إعدادات تعليمية."),
+      T("Training institutes are healthcare settings.",0,"خطأ؛ إعدادات تعليمية."),
+      T("Teaching a family how to care for an elderly patient at home is an example of the home setting.",1,"صح."),
+      // 6. Content of Health Education
+      M("Mode of transmission, immunization, infection control and screening programs belong to:",["Mental health","School health","Disease prevention","Environmental health"],2,"الوقاية من الأمراض."),
+      M("Stress management, coping skills and emotional wellbeing belong to:",["Family welfare","Mental health","Disease prevention","Environmental health"],1,"الصحة النفسية."),
+      M("Safe water, waste disposal and pollution control belong to:",["Personal health","Mental health","Prevention of accidents","Environmental health"],3,"الصحة البيئية."),
+      M("Family planning, childcare services and maternal care belong to:",["Family welfare","Mental health","School health","Environmental health"],0,"رعاية الأسرة."),
+      M("Teaching where services are available, when and how to make use of them is:",["Prevention of accidents","Personal health","Use of health services","Mental health"],2,"استخدام الخدمات الصحية."),
+      M("Health hazards due to physical, biological and mechanical causes are part of:",["Family welfare","Prevention of accidents","Personal health","Mental health"],1,"الوقاية من الحوادث."),
+      M("Personal hygiene, good food and prevention of communicable diseases are the content of:",["Environmental health","Mental health","Family welfare","School health"],3,"صحة المدرسة."),
+      M("Nutrition needs at all ages, prevention of deficiency diseases and selection and cooking of food are part of:",["Use of health services","Personal health","Mental health","Environmental health"],1,"الصحة الشخصية."),
+      T("Exercise, sleep and rest are part of personal health.",1,"صح."),
+      T("Family planning is part of the prevention of accidents content.",0,"خطأ؛ هو ضمن رعاية الأسرة."),
+      T("Immunization is part of disease prevention content.",1,"صح."),
+      T("Safe water and waste disposal are part of environmental health.",1,"صح."),
+      T("Immunization is part of the mental health content.",0,"خطأ؛ هو ضمن الوقاية من الأمراض."),
+      T("Prevention of accidents covers homes, hospitals, schools and industries.",1,"صح."),
+      T("Stress management is part of environmental health.",0,"خطأ؛ هو ضمن الصحة النفسية."),
+      T("Content on use of health services teaches people how to avoid using them.",0,"خطأ؛ يعلم أين ومتى وكيف يستخدمونها."),
+      // 7. Patient Education Steps & Approaches
+      M("What is the FIRST step of patient education?",["Assessment","Selecting materials","Teaching the patient","Evaluation"],0,"التقييم أولاً."),
+      M("Defining patient and family needs and observing readiness to learn belong to:",["Evaluation","Design of the instruction plan","Assessment","Go teach the patient"],2,"هذه خطوة التقييم."),
+      M("Setting objectives with the patient and selecting materials belong to:",["Design of the instruction plan","Go teach the patient","Assessment","Evaluation"],0,"تصميم خطة التعليم."),
+      M("Putting the plan in motion and helping patients reach objectives belongs to:",["Evaluation","Select teaching strategies and resources","Design of the instruction plan","Assessment"],1,"اختيار استراتيجيات وموارد التعليم."),
+      M("Understanding and adapting to barriers to learning belongs to:",["Design of the instruction plan","Assessment","Evaluation","Go teach the patient"],3,"خطوة تعليم المريض."),
+      M("According to the lecture, evaluation should be:",["Optional","Done only at the end","Continuous through all steps","Done only at the beginning"],2,"التقييم مستمر خلال كل الخطوات."),
+      M("Which list correctly shows the approaches of health education?",["Individual, group, mass, community organization, hybrid","Individual, family, hospital, school, home","Awareness, interest, trial, adoption, mass","Medical, social, motivational, individual, mass"],0,"مناهج التثقيف الصحي."),
+      M("A nurse asks a diabetic patient what he already knows and whether he is ready to learn. This is:",["Design of the instruction plan","Assessment","Evaluation","Go teach the patient"],1,"تحديد الاحتياجات والاستعداد للتعلم = تقييم."),
+      T("Evaluation is continuous through all steps of patient education.",1,"صح."),
+      T("The approaches of health education include only individual and group levels.",0,"خطأ؛ تشمل أيضاً الجماعي والمجتمعي والهجين."),
+      T("Hybrid education is one of the approaches of health education.",1,"صح."),
+      T("Setting objectives with the patient is done in the assessment step.",0,"خطأ؛ هي خطوة تصميم الخطة."),
+      T("Selecting materials is done before assessing patient needs.",0,"خطأ؛ التقييم أولاً."),
+      T("Assessment includes observing the patient's readiness to learn.",1,"صح."),
+      T("Evaluation is done only at the end of patient education.",0,"خطأ؛ مستمر في كل الخطوات."),
+      T("In the teaching step, the educator adapts to barriers to learning.",1,"صح."),
+      // 8. Characteristics of the Health Educator
+      M("A good communicator speaks:",["Quickly to save time","Only to educated people","With complex scientific terms","Clearly and simply, using language appropriate to the audience"],3,"التحدث بوضوح وبساطة وبلغة تناسب الجمهور."),
+      M("The health educator should be familiar with:",["Only medical research","Only legal regulations","Traditions and popular customs of the society","Only hospital policies"],2,"معرفة تقاليد وعادات المجتمع."),
+      M("A knowledgeable health educator provides:",["Accurate and updated information","Information without evidence","Outdated but familiar information","Information from personal opinion only"],0,"معلومات دقيقة ومحدثة."),
+      M("A good listener health educator:",["Talks without interruption","Encourages questions and understands learners' concerns and needs","Avoids questions","Ignores learners' concerns"],1,"يشجع الأسئلة ويفهم الاحتياجات."),
+      M("A culturally sensitive educator respects:",["Only the majority's beliefs","Only scientific opinions","Only his own culture","Cultural, religious and social differences"],3,"احترام الاختلافات الثقافية والدينية والاجتماعية."),
+      M("The health educator should respect others' right to:",["Follow only the educator's values","Ignore health goals","Hold diverse values, attitudes and opinions","Avoid health recommendations"],2,"احترام تنوع القيم والآراء."),
+      M("A health educator uses heavy medical jargon with an illiterate group. Which characteristic is violated?",["Culturally sensitive","Good communicator (avoid scientific terms)","Focuses on clear goals","Knowledgeable"],1,"يجب تجنب المصطلحات العلمية والتحدث ببساطة."),
+      T("A health educator should be a good listener.",1,"صح."),
+      T("A good communicator uses language appropriate to the audience.",1,"صح."),
+      T("A health educator should use complex scientific terms to impress the audience.",0,"خطأ؛ يتجنب المصطلحات العلمية."),
+      T("A health educator does not need to be familiar with the traditions of the society.",0,"خطأ؛ يجب أن يكون ملماً بتقاليد المجتمع."),
+      T("A health educator should be culturally sensitive.",1,"صح."),
+      T("A health educator should impose his own values and opinions on the audience.",0,"خطأ؛ يحترم تنوع القيم والآراء."),
+      T("A health educator should be a good example for the message of health education.",1,"صح."),
+      T("Knowledgeable educators may provide outdated information if it is familiar.",0,"خطأ؛ يقدمون معلومات دقيقة ومحدثة.")
+    ]
+  },
+  {
+    name:"المحاضرة 2: Principles of Health Education",
+    nameEn:"المحاضرة الثانية - Lecture 2: Principles of Health Education",
+    questions:[
+      // 1. Principles of Health Education (1–8)
+      M("Credibility is the degree to which the message is:",["Accepted by the government","Understood by the educator","Repeated by the educator","Perceived as trustworthy by the receiver"],3,"المصداقية: مدى اعتبار الرسالة جديرة بالثقة."),
+      M("A credible message must be based on facts and be:",["Short only","Different from local culture","Consistent and compatible with scientific knowledge and local culture","Complex and technical"],2,"متسقة ومتوافقة مع العلم والثقافة المحلية."),
+      M("Breastfeeding education for menopausal women may not be interesting. Which principle is illustrated?",["Interest","Credibility","Motivation","Reinforcement"],0,"مبدأ الاهتمام وضرورة تقييم الاحتياجات أولاً."),
+      M("Group discussion, workshops and role play are methods of:",["Reinforcement","Credibility","Active learning (participation)","Known to unknown"],2,"المشاركة والتعلم النشط."),
+      M("Proceeding from concrete to abstract and simple to complicated is the principle of:",["Known to unknown","Motivation","Need based","Reinforcement"],0,"من المعلوم إلى المجهول."),
+      M("Repetition of the message at intervals and feedback are the principle of:",["Credibility","Reinforcement","Communication","Participation"],1,"التعزيز."),
+      M("Awakening the desire for success or the ability to strive toward a goal is:",["Interest","Reinforcement","Participation","Motivation"],3,"التحفيز."),
+      M("Adjusting talk and action to suit the group and knowing the local language for illiterates is:",["Communication","Credibility","Motivation","Need based"],0,"التواصل."),
+      M("All health-related education should be:",["Cost based","Medical based","Need based","Doctor based"],2,"يجب أن يكون قائماً على الحاجة."),
+      T("Participation gives clients the chance to go through identification, planning, implementation and evaluation.",1,"صح."),
+      T("Known to unknown means moving from abstract to concrete and from complicated to simple.",0,"خطأ؛ العكس: من الملموس للمجرد ومن البسيط للمعقد."),
+      T("Health teaching should be unrelated to the interests of the people.",0,"خطأ؛ يجب أن يرتبط باهتماماتهم."),
+      T("Repetition of the message at intervals is necessary for understanding.",1,"صح."),
+      T("Motivation means forcing the audience to do difficult tasks.",0,"خطأ؛ هي دفع الجمهور وتحفيزه بالكلمات والأفعال."),
+      T("A community health education program should be purposeful, specific and relevant to problems.",1,"صح."),
+      T("Reinforcement means delivering the message only once.",0,"خطأ؛ التكرار على فترات ضروري."),
+      T("A credible message is based on facts.",1,"صح."),
+      // 2. Principles of Health Education (9–17)
+      M("The purpose of health education is to change:",["Hospitals","Behavior","Laws","Diseases"],1,"هدفه تغيير السلوك."),
+      M("Explaining the correct steps of hand washing to improve a wrong behavior illustrates:",["Feedback","Leadership","Credibility","Change behavior"],3,"مبدأ تغيير السلوك."),
+      M("The health educator must have recent scientific knowledge. This is the principle of:",["Good human relations","Feedback","Scientific based knowledge","Comprehension"],2,"المعرفة القائمة على العلم."),
+      M("Which principle states that people must accept the educator as a real friend?",["Feedback","Comprehension","Leadership","Good human relations"],3,"العلاقات الإنسانية الجيدة."),
+      M("Teaching within the mental capacity of the people is the principle of:",["Comprehension","Leadership","Reinforcement","Feedback"],0,"الفهم."),
+      M("'If I hear, I forget; if I see, I remember; if I do, I know' illustrates:",["Feedback","Learning by doing","Credibility","Leadership"],1,"التعلم بالممارسة."),
+      M("Replacing eggs and toothpaste for burns with better methods like Mebo illustrates:",["Comprehension","Learning by doing","Compare and upgrade knowledge","Leadership"],2,"مقارنة وتحديث المعرفة."),
+      M("Health education relies on feedback from receivers. Feedback is a key concept of:",["Law","Systems","Medicine","Economics"],1,"التغذية الراجعة مفهوم أساسي في النظم."),
+      M("Health workers should involve community leaders:",["Before starting any program","After the program ends","Only if problems occur","Never"],0,"إشراك القادة قبل بدء أي برنامج."),
+      M("A health educator explaining the hazards of smoking should not smoke himself. This is:",["Reinforcement","Feedback","Leadership","Setting an example"],3,"القدوة."),
+      T("Health education must be based on scientific and current knowledge.",1,"صح."),
+      T("Community leaders should be involved only after the program has ended.",0,"خطأ؛ تُشرك القيادات قبل بدء أي برنامج."),
+      T("Teaching should be within the mental capacity of the people.",1,"صح."),
+      T("Comparing old health ideas with new ones is discouraged.",0,"خطأ؛ يُعطى الفرصة لتحليل الأفكار القديمة بالجديدة."),
+      T("Health education does not need feedback from the receivers.",0,"خطأ؛ تعتمد على التغذية الراجعة."),
+      T("A health educator who teaches about the hazards of smoking should not smoke himself.",1,"صح."),
+      T("According to learning by doing, hearing alone is enough for people to know.",0,"خطأ؛ 'إذا مارست عرفت'."),
+      T("Good human relations lead to good communication.",1,"صح.")
+    ]
+  },
+  {
+    name:"المحاضرة 4: Health Education Settings",
+    nameEn:"المحاضرة الرابعة - Lecture 4: Health Education Settings",
+    questions:[
+      // 1. Introduction, Definition & Criteria of a Setting
+      M("The main purpose of health education is to offer people and communities:",["Only hospital beds","Legal penalties","Information, resources and solutions needed to make healthier lifestyle decisions","Only medications"],2,"المعلومات والموارد والحلول لاتخاذ قرارات صحية."),
+      M("A health education setting is defined as:",["Any place in which the process of health education takes place","Only a classroom","Only a hospital ward","A pharmacy"],0,"أي مكان تتم فيه عملية التثقيف الصحي."),
+      M("Which is a criterion for a good health education setting?",["Crowded and noisy","Good light and good ventilation","Poor lighting","Hot and humid"],1,"إضاءة وتهوية جيدة."),
+      M("A good setting should be:",["Dark","Next to a busy road","Without facilities","Away from noise"],3,"بعيداً عن الضوضاء."),
+      M("Facilities that should be available in the setting include:",["Only chairs","Nothing","Data show, microphone and poster","Only a chalkboard"],2,"جهاز عرض وميكروفون وملصقات."),
+      M("Before conducting an educational session in a place, the educator should:",["Ignore authorities","Pay fees only","Cancel","Obtain approval"],3,"الحصول على موافقة."),
+      M("Which is NOT one of the six listed health education settings?",["Health care facilities","Shopping malls","Prisons","College/university campus"],1,"المولات ليست من الأماكن الستة."),
+      M("A nurse plans a session in a hall with no ventilation and loud construction next door. Which criteria are violated?",["Good ventilation and away from noise","Temperature only","Presence of a poster only","Obtaining approval"],0,"التهوية والبعد عن الضوضاء."),
+      T("A good setting should be close to noise to attract attention.",0,"خطأ؛ يجب أن يكون بعيداً عن الضوضاء."),
+      T("Obtaining approval is not required for a health education setting.",0,"خطأ؛ الموافقة من المعايير."),
+      T("A health education setting is any place in which health education takes place.",1,"صح."),
+      T("Good temperature and ventilation are criteria of a suitable setting.",1,"صح."),
+      // 2. College & University Campus
+      M("A goal of health education on a campus is to:",["Reduce attendance","Help students make decisions about their health","Replace lectures","Increase fees"],1,"مساعدتهم في اتخاذ القرارات الصحية."),
+      M("Another goal is to:",["Avoid prevention","Ignore lifestyle","Fight misconceptions","Spread rumors"],2,"محاربة المفاهيم الخاطئة."),
+      M("Campus health education also aims at supporting:",["Academic success","Sport only","Tuition","Dormitory rules"],0,"دعم النجاح الأكاديمي."),
+      M("Which is a component of a campus health education program?",["Tax advice","Building construction","Legal prosecution","Substance abuse prevention"],3,"الوقاية من تعاطي المواد."),
+      M("Campus programs include:",["Only sports","Only exams","First aid and safety","Only nutrition"],2,"الإسعافات الأولية والسلامة."),
+      M("Campus programs cover environmental, emotional and:",["Legal","Sexual health","Industrial","Dental only"],1,"الصحة الجنسية."),
+      M("A university runs sessions about healthy meals for students. This is which program component?",["First aid","Substance abuse","Disease prevention only","Healthy nutrition"],3,"التغذية الصحية."),
+      T("Human growth and development is a component of campus programs.",1,"صح."),
+      T("Promoting a healthy lifestyle is a goal of campus health education.",1,"صح."),
+      T("Campus programs exclude substance abuse prevention.",0,"خطأ؛ من المكونات."),
+      T("Campus health education aims to increase misconceptions.",0,"خطأ؛ لمحاربتها."),
+      // 3. Work Sites
+      M("One goal of worksite health education is:",["Providing employees with information and resources to improve overall well-being","Reducing productivity","Increasing absenteeism","Eliminating breaks"],0,"تحسين الصحة العامة للعاملين."),
+      M("Healthy employees are more likely to be:",["Injured","Absent","Dissatisfied","Productive"],3,"أكثر إنتاجية."),
+      M("Worksite programs aim at increasing job satisfaction and:",["Increasing accidents","Reducing safety","Reducing absenteeism","Increasing hazards"],2,"تقليل الغياب."),
+      M("Another goal is the prevention of:",["Occupational hazards and injuries","Promotion","Training","Retirement"],0,"المخاطر المهنية والإصابات."),
+      M("The health educator's role at a worksite includes:",["Hiring staff","Identifying and assessing risks to health and safety in the workplace","Setting salaries","Auditing finances"],1,"تحديد وتقييم المخاطر."),
+      M("Another role of the educator is to:",["Ignore risks","Avoid monitoring","Increase risks","Decide on ways to eliminate or minimize risks"],3,"تقليل المخاطر."),
+      M("Which topic belongs to worksite programs?",["School dental care","Blood pressure and cholesterol reduction","Home injections","Prison security"],1,"خفض الضغط والكوليسترول."),
+      M("A factory nurse organizes sessions on stress reduction and physical fitness for workers. This is a:",["Home care service","School program","Worksite health education program","Prison program"],2,"برنامج مكان العمل."),
+      T("The educator at a worksite does not monitor health and safety of workers.",0,"خطأ؛ من دوره المراقبة والتدريب."),
+      T("Smoking and drugs, nutrition and weight control are worksite program topics.",1,"صح."),
+      T("Worksite programs aim to increase occupational injuries.",0,"خطأ؛ للوقاية منها."),
+      T("Worksite health education aims to reduce absenteeism and increase job satisfaction.",1,"صح."),
+      // 4. School Setting
+      M("An objective of school health education is:",["Early detection and care of students with health problems","Closing the school","Reducing activity","Avoiding screening"],0,"الاكتشاف المبكر."),
+      M("Another objective is to ensure:",["Crowding","A healthy environment for children at school","A noisy environment","No supervision"],1,"بيئة صحية."),
+      M("School health education promotes development of:",["Fear","Absence","Smoking habits","Healthy attitudes and healthy behaviors"],3,"اتجاهات وسلوكيات صحية."),
+      M("School health education aims to increase:",["Absence","Failure","Success rates","Cost"],2,"معدلات النجاح."),
+      M("Which is a component of the school health program?",["Dental health","Prison security","Occupational hazards","Home care"],0,"صحة الأسنان."),
+      M("School programs include nutritional service and:",["Home visits","Legal aid","First aid care","Mining safety"],2,"الإسعافات الأولية."),
+      M("Which is NOT listed as a school health program component?",["Blood pressure reduction","Communicable disease prevention","Mental health","Visual health"],0,"خفض الضغط ضمن برامج العمل."),
+      M("A school nurse screens students' eyesight and refers poor vision. This is:",["Dental health","Nutritional service","First aid","Visual health component"],3,"الصحة البصرية."),
+      T("A healthy school environment is not part of school health objectives.",0,"خطأ؛ من الأهداف."),
+      T("Early detection of students with health problems is a school objective.",1,"صح."),
+      T("Dental, visual and mental health are components of the school health program.",1,"صح."),
+      T("School health programs exclude prevention of communicable disease.",0,"خطأ؛ من المكونات."),
+      // 5. Home Setting
+      M("Home health care is for all EXCEPT:",["Recovering from illness","Healthy young athletes with no needs","Chronically ill","Terminally ill"],1,"ليس للأصحاء."),
+      M("Home health care is for the elderly and:",["Disabled","Students","Visitors","Healthy"],0,"المعاقين."),
+      M("One purpose of home health care is that:",["Hospitals are cheaper","Disabled people are more comfortable at home","People hate home","It is slower"],1,"الراحة في المنزل."),
+      M("Longer lives result in:",["Fewer elderly","Fewer illnesses","Increased chronic illnesses and need for care","No need for care"],2,"زيادة الأمراض المزمنة."),
+      M("Short-term care is:",["Impossible at home","More expensive at home","Same cost","Less expensive in the home"],3,"أقل تكلفة."),
+      M("The educator's role at home includes helping the community to:",["Pay taxes","Avoid help","Identify their needs","Stop care"],2,"تحديد احتياجاتهم."),
+      M("Which is an example of a skilled home health service?",["Law enforcement","Factory inspection","Lecture halls","Wound care for pressure sores or surgical wounds"],3,"العناية بالجروح."),
+      M("Which is also a skilled home service?",["Patient and caregiver education","Prison security","Sports training","Court hearings"],0,"تثقيف المريض ومقدم الرعاية."),
+      T("Home health care is only for healthy individuals.",0,"خطأ؛ للمرضى."),
+      T("Injections and intravenous therapy are examples of skilled home health services.",1,"صح."),
+      T("Most people prefer receiving care at home.",1,"صح."),
+      T("Short-term care is more expensive at home than in hospital.",0,"خطأ؛ أقل تكلفة في المنزل."),
+      // 6. The Prison Setting
+      M("Why is prison health important?",["Prisoners have no rights","Prisoners have the same right to health and wellbeing as other people","Prisons have low disease risk","Prisoners are healthier"],1,"لهم نفس الحق في الصحة."),
+      M("Prisoners generally carry a higher burden of:",["Only allergies","Only fractures","Communicable and non-communicable disease","No diseases"],2,"عبء أعلى من الأمراض."),
+      M("Prisons are:",["Low-risk","Sterile","Disease-free","High-risk places for disease"],3,"عالية الخطورة."),
+      M("Prisoners generally come from:",["Wealthy","Socially disadvantaged segments of the community","Students","Healthcare workers"],1,"فئات محرومة اجتماعياً."),
+      M("The educator in prison gives advice about high-risk lifestyle such as:",["Illegal drugs, alcohol and smoking","Hobbies","Exercise only","Sleep only"],0,"المخدرات والكحول والتدخين."),
+      M("The educator provides training in psychological skills such as:",["Typing","Self-esteem and anger management","Cooking","Driving"],1,"تقدير الذات وإدارة الغضب."),
+      M("Needs common to ALL prisoners include:",["Advice on avoiding STD and HIV","TB immunization only","Epilepsy advice","Menopause advice"],0,"تجنب الأمراض المنقولة جنسياً."),
+      M("Needs common to MOST prisoners include:",["Influenza vaccine","Menopause","Psychological skills training such as anger management and thinking skills","Diabetes advice"],2,"مهارات نفسية."),
+      M("Practical skills training for most prisoners includes:",["Pharmacy","Nursing","Surgery","Job search skills and parenting education"],3,"البحث عن عمل وتربية الأبناء."),
+      M("Needs common to SOME prisoners include:",["Avoiding STD","Balanced diet","Advice on diabetes, epilepsy and menopause","Smoking harm"],2,"السكري والصرع وانقطاع الطمث."),
+      M("Immunization against TB and influenza is a need of:",["All prisoners","Some prisoners","No prisoners","Staff only"],1,"بعض السجناء."),
+      M("Which is a challenge to implementing prison programs?",["Security concerns due to strict protocol","No stigma","Positive attitude of inmates","Unlimited resources"],0,"الأمن والبروتوكول الصارم."),
+      M("Other challenges include:",["Free time only","Supportive environment","Excess funds","Limited resources and stigma and cultural barriers"],3,"محدودية الموارد والوصمة."),
+      T("Advice on avoiding STD and HIV is a need common to all prisoners.",1,"صح."),
+      T("Anger management is part of psychological skills training in prisons.",1,"صح."),
+      T("Prisoners carry a lower burden of disease than the general population.",0,"خطأ؛ أعلى."),
+      T("Prisoners have the same right to health as other people.",1,"صح."),
+      T("Inmates always show positive attitudes toward health programs.",0,"خطأ؛ قد تكون هناك مقاومة."),
+      T("Immunization against TB and influenza is needed by all prisoners equally.",0,"خطأ؛ لبعض السجناء."),
+      T("Security concerns and limited resources are challenges of prison programs.",1,"صح."),
+      T("Advice on diabetes and epilepsy is a need common to all prisoners.",0,"خطأ؛ لبعضهم."),
+      // 7. Health Care Facilities
+      M("Health education in facilities empowers individuals to:",["Depend on staff","Make informed decisions about their health through knowledge and skills","Avoid care","Stop treatment"],1,"اتخاذ قرارات مستنيرة."),
+      M("Educating patients ensures:",["Less compliance","More infections","Longer stays","Continuity of care and reduced complications"],3,"استمرارية الرعاية."),
+      M("Health education improves:",["Complications","Noncompliance","Adherence to medication and treatments","Hospital costs"],2,"الالتزام بالعلاج."),
+      M("Disease prevention education includes information about:",["Vaccination and regular screening","Surgery only","Hobbies","Prison security"],0,"التطعيم والفحص الدوري."),
+      M("Managing chronic conditions means helping people understand:",["Only diet","Legal rules","Their condition, medication and treatment plan","Only cost"],2,"حالتهم وعلاجهم."),
+      M("Which is a health education program in healthcare facilities?",["Diabetes management program","Prison security","Factory safety","Home injection only"],0,"برنامج السكري."),
+      M("Which is also a program?",["Weight lifting competition","Law enforcement","Tax education","Smoking cessation"],3,"الإقلاع عن التدخين."),
+      M("Another facility program is:",["Parole","Mental health and stress management","Mining safety","School dental"],1,"الصحة النفسية."),
+      T("Health education in facilities improves adherence to medication and treatments.",1,"صح."),
+      T("Health education in facilities increases complications related to illness.",0,"خطأ؛ تقللها."),
+      T("Smoking cessation programs are excluded from healthcare facilities.",0,"خطأ؛ من البرامج."),
+      T("Maternal and child health is a health education program in facilities.",1,"صح.")
+    ]
+  }
+];
+
+const QUESTION_BANK=ORIGINAL_BANK.map(function(sec){
+  return{
+    name:sec.name,nameEn:sec.nameEn,originalName:sec.name,
+    questions:sec.questions.map(function(q,idx){return Object.assign({},q,{num:idx+1})})
+  };
+});
+
+const LS_KEY='health_education_qbank_v1';
+const TRANS_CACHE_KEY='health_education_trans_cache_v1';
+let transCache={};
+let state={mode:'practice',order:'device',showTranslation:true,timerSeconds:0,quizQuestions:[],currentIndex:0,correctCount:0,wrongCount:0,answered:false,selectedOptionIdx:null,sessionMistakes:[],timerInterval:null,timeLeft:0,questionStates:[]};
+let maleEnglishVoice=null,currentExplainLang='ar',currentExplainName='';
+
+function safeGetLS(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function safeSetLS(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function safeRemoveLS(k){try{localStorage.removeItem(k)}catch(e){}}
+try{transCache=JSON.parse(safeGetLS(TRANS_CACHE_KEY)||'{}')||{};}catch(e){transCache={};}
+
+function saveTransCache(){
+  try{
+    const keys=Object.keys(transCache);
+    if(keys.length>2500)keys.slice(0,500).forEach(k=>delete transCache[k]);
+    safeSetLS(TRANS_CACHE_KEY,JSON.stringify(transCache));
+  }catch(e){}
+}
+
+async function translateEnToAr(text){
+  if(!text)return '';
+  const clean=text.replace(/_{3,}/g,'...').trim();
+  if(transCache[clean])return transCache[clean];
+  try{
+    const res=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ar&dt=t&q='+encodeURIComponent(clean));
+    if(res.ok){
+      const data=await res.json();
+      if(data&&Array.isArray(data[0])){
+        const out=data[0].map(x=>(x&&x[0])?x[0]:'').join('').trim();
+        if(out){transCache[clean]=out;return out;}
+      }
+    }
+  }catch(e){}
+  try{
+    const res2=await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(clean)+'&langpair=en|ar');
+    if(res2.ok){
+      const d2=await res2.json();
+      const out2=d2&&d2.responseData&&d2.responseData.translatedText;
+      if(out2&&out2.trim()){transCache[clean]=out2.trim();return out2.trim();}
+    }
+  }catch(e){}
+  return '';
+}
+
+const AR_LETTERS=['أ) ','ب) ','ج) ','د) '];
+async function ensureQuestionTranslated(q){
+  if(!q||q._transDone)return;
+  let changed=false;
+  const tasks=[];
+  if(!q.ar){tasks.push(translateEnToAr(q.en).then(ar=>{if(ar){q.ar=ar;changed=true;}}));}
+  q.options.forEach((opt,i)=>{
+    if(!opt.ar){
+      const m=opt.en.match(/^([A-D]\)\s*)(.*)$/i);
+      const body=m?m[2]:opt.en, prefix=m?(AR_LETTERS[i]||''):'';
+      tasks.push(translateEnToAr(body).then(ar=>{if(ar){opt.ar=prefix+ar;changed=true;}}));
+    }
+  });
+  if(tasks.length>0){await Promise.all(tasks);if(changed)saveTransCache();}
+  q._transDone=!!(q.ar&&q.options.every(o=>!!o.ar));
+}
+
+function prefetchNextQuestions(fromIdx){
+  if(!state.showTranslation)return;
+  [fromIdx+1,fromIdx+2].forEach(i=>{if(i<state.quizQuestions.length)ensureQuestionTranslated(state.quizQuestions[i]);});
+}
+
+function setTheme(t){document.body.classList.toggle('light',t==='light');document.querySelectorAll('.theme-toggle button').forEach(b=>{b.classList.toggle('active',b.dataset.theme===t)});safeSetLS('informatics_theme',t)}
+function loadProgress(){try{const r=safeGetLS(LS_KEY);if(!r)return{attempted:{},mistakes:{}};return JSON.parse(r)}catch(e){return{attempted:{},mistakes:{}}}}
+function saveProgress(p){safeSetLS(LS_KEY,JSON.stringify(p))}
+function qid(s,n){return s+'___'+n}
+
+function isTFQuestion(q){
+  if(q.options&&q.options.length===2){
+    const o0=(q.options[0].en||'').trim().toLowerCase(),o1=(q.options[1].en||'').trim().toLowerCase();
+    return(o0==='true'||o0.startsWith('true'))&&(o1==='false'||o1.startsWith('false'));
+  }
+  return false;
+}
+
+function showExplanation(name){
+  currentExplainName=name;
+  const box=document.getElementById('section-explanation'),title=document.getElementById('explain-title'),textDiv=document.getElementById('explain-text');
+  const data={
+    "المحاضرة 1: Introduction to Health Education":{
+      text_ar:"تشمل المحاضرة الأولى (123 سؤالاً):\n• المقدمة والتعريف: التثقيف الصحي عملية تعليم وتعلم مخططة تشجع القرارات الطوعية المستنيرة وتغيير العادات غير الصحية (وليس مجرد إعطاء نشرات)، وتعليم المريض بالمستشفيات والعيادات.\n• الأهمية والأهداف: تعزيز الحياة الصحية، الوقاية، الكشف المبكر، تقليل التكاليف، وتحسين جودة الحياة؛ والأهداف (زيادة المعرفة، التأثير على الاتجاهات، تعزيز الممارسات، تنمية المهارات، المشاركة المجتمعية).\n• المراحل الخمس بالترتيب: الوعي → الاهتمام → التقييم → التجربة → التبني.\n• الأماكن والمحتوى: الرعاية الصحية، التعليم، العمل، المنزل، المجتمع؛ ومحتوى الصحة الشخصية، الوقاية، النفسية، البيئية، الأسرة، المدرسة، الحوادث، والخدمات.\n• خطوات تعليم المريض والمناهج وخصائص المثقف: التقييم أولاً ثم الخطة ثم الاستراتيجيات ثم التعليم مع التقييم المستمر؛ والمناهج (الفردي، الجماعي، الجماهيري، المجتمعي، الهجين)؛ وخصائص المثقف (التواصل البسيط، المعرفة المحدثة، الاستماع، الحساسية الثقافية، القدوة).",
+      text_en:"Covers Lecture 1 (123 Questions):\n• Definition & Importance: planned teaching/learning process encouraging voluntary informed decisions (not merely handing out information), patient education in clinical settings, disease prevention, early detection, cost reduction, and quality of life.\n• Objectives: general & specific (knowledge, attitudes, practices, skills, community participation).\n• Five Stages in order: Awareness → Interest → Evaluation → Trial → Adoption.\n• Settings & Content: healthcare, educational, workplace, home, and community settings; personal, disease prevention, mental, environmental, family welfare, school health, accident prevention, and health service use.\n• Steps, Approaches & Educator Traits: Assessment first, instruction design, strategies, teaching, and continuous evaluation; individual, group, mass, community, and hybrid approaches; clear communication, updated knowledge, listening, cultural sensitivity, and being a role model."
+    },
+    "المحاضرة 2: Principles of Health Education":{
+      text_ar:"تشمل المحاضرة الثانية (35 سؤالاً):\n• المبادئ (1–8): المصداقية (رسالة جديرة بالثقة مبنية على حقائق ومتوافقة مع العلم والثقافة)، الاهتمام، المشاركة والتعلم النشط (المناقشة ولعب الأدوار)، من المعلوم إلى المجهول (من الملموس للمجرد ومن البسيط للمعقد)، التعزيز (التكرار على فترات)، التحفيز، التواصل المناسب للمجموعة، والتثقيف القائم على الحاجة.\n• المبادئ (9–17): تغيير السلوك، المعرفة العلمية المحدّثة، العلاقات الإنسانية الجيدة (القبول كصديق)، الفهم ضمن القدرة العقلية، التعلم بالممارسة ('إذا مارست عرفت')، مقارنة وتحديث المعرفة (تحديث الأفكار القديمة)، التغذية الراجعة (مفهوم أساسي في النظم)، القيادة (إشراك قادة المجتمع قبل بدء البرنامج)، والقدوة الحسنة.",
+      text_en:"Covers Lecture 2 (35 Questions):\n• Principles (1–8): Credibility (trustworthy, fact-based, scientifically & culturally compatible), Interest, Participation (active learning via discussion/workshops/role play), Known to unknown (concrete to abstract, simple to complicated), Reinforcement (repetition at intervals), Motivation, Communication, and Need-based programs.\n• Principles (9–17): Change behavior, Scientific-based knowledge, Good human relations, Comprehension (within mental capacity), Learning by doing ('if I do, I know'), Compare and upgrade knowledge, Feedback (key systems concept), Leadership (involve community leaders before starting), and Setting an example."
+    },
+    "المحاضرة 4: Health Education Settings":{
+      text_ar:"تشمل المحاضرة الرابعة (92 سؤالاً):\n• التعريف ومعايير المكان الجيد: أي مكان تتم فيه عملية التثقيف الصحي؛ يجب أن يتمتع بإضاءة وتهوية وحرارة مناسبة، والبعد عن الضوضاء، وتوفر التسهيلات (جهاز عرض، ميكروفون، ملصقات)، والحصول على موافقة مسبقة.\n• أماكن التثقيف الستة: الحرم الجامعي (القرارات الصحية، محاربة المفاهيم الخاطئة، النجاح الأكاديمي، التغذية، الإسعافات، مكافحة الإدمان)، أماكن العمل (الإنتاجية، تقليل الغياب، الوقاية من المخاطر المهنية، تقييم المخاطر)، المدرسة (الاكتشاف المبكر، البيئة الصحية، الأسنان والبصر والنفسية)، المنزل (للمرضى وكبار السن والمعاقين، أقل تكلفة للرعاية قصيرة الأمد، العناية بالجروح والحقن)، السجون (حقوق متساوية، احتياجات لجميع/معظم/بعض السجناء، وتحديات الأمن والموارد والوصمة)، والمنشآت الصحية (استمرارية الرعاية، الالتزام بالعلاج، التطعيم، السكري، الإقلاع عن التدخين).",
+      text_en:"Covers Lecture 4 (92 Questions):\n• Definition & Criteria: any place where health education occurs; good light, ventilation, temperature, away from noise, facilities (data show, mic, posters), and prior approval.\n• Six Settings: College/University campus (health decisions, fighting misconceptions, academic success, nutrition, substance abuse), Work sites (productivity, less absenteeism, risk assessment & elimination), School (early detection, healthy environment, dental/visual/mental health), Home (recovering/chronic/elderly/disabled, lower short-term cost, skilled wound/IV/education services), Prisons (equal right to health, needs for ALL/MOST/SOME inmates, security/resource/stigma challenges), and Health Care Facilities (continuity of care, adherence, vaccination, chronic care, smoking cessation)."
+    }
+  };
+  const d=data[name];title.textContent=name;
+  if(!d){textDiv.textContent=currentExplainLang==='ar'?'لا يوجد شرح':'No explanation.';box.classList.add('show');updateExplainTextClass();return;}
+  textDiv.innerHTML=(currentExplainLang==='ar'?d.text_ar:d.text_en).replace(/\n/g,'<br>');updateExplainTextClass();box.classList.add('show');
+}
+function updateExplainTextClass(){const t=document.getElementById('explain-text');t.classList.remove('ar','en');t.classList.add(currentExplainLang);}
+function closeExplanation(){document.getElementById('section-explanation').classList.remove('show');}
+function setExplainLang(l){currentExplainLang=l;document.querySelectorAll('.explain-controls .lang-btn').forEach(b=>{b.classList.toggle('active',b.dataset.lang===l)});if(currentExplainName)showExplanation(currentExplainName);}
+
+function updateHomeStats(){
+  const p=loadProgress(),keys=Object.keys(p.attempted||{});let c=0,w=0;
+  keys.forEach(k=>{if(p.attempted[k]==='correct')c++;else w++});
+  const total=keys.length,pct=total?Math.round((c/total)*100):0;
+  document.getElementById('statAttempted').textContent=total;
+  document.getElementById('statCorrect').textContent=c;
+  document.getElementById('statWrong').textContent=w;
+  document.getElementById('progressPercent').innerHTML=pct+'<small>%</small>';
+  document.getElementById('progressCircle').style.strokeDashoffset=176-(pct/100)*176;
+  updateWeakSectionSuggestion(p);
+}
+
+function updateWeakSectionSuggestion(p){
+  const att=p.attempted||{};let bestIdx=-1,bestRate=0,bestName='';
+  QUESTION_BANK.forEach((sec,idx)=>{
+    let a=0,w=0;sec.questions.forEach(q=>{const k=qid(sec.name,q.num);if(att[k]!==undefined){a++;if(att[k]==='wrong')w++}});
+    if(a>=2){const rate=w/a;if(rate>bestRate){bestRate=rate;bestIdx=idx;bestName=sec.name}}
+  });
+  const link=document.getElementById('weakLink');
+  if(bestIdx>=0&&bestRate>0){
+    link.style.display='flex';document.getElementById('weakSectionName').textContent=bestName;
+    document.getElementById('weakSectionRate').textContent=Math.round(bestRate*100)+'%';link.dataset.sectionIdx=bestIdx;
+  }else link.style.display='none';
+}
+
+function buildSectionList(){
+  const wrap=document.getElementById('section-list');if(!wrap)return;wrap.innerHTML='';
+  QUESTION_BANK.forEach((sec,idx)=>{
+    const div=document.createElement('div');div.className='section-item active';div.dataset.idx=idx;
+    const nameSpan=document.createElement('span');nameSpan.className='sec-title';nameSpan.textContent=sec.nameEn;
+    const infoBtn=document.createElement('button');infoBtn.className='info-btn';infoBtn.type='button';infoBtn.innerHTML='<i class="fas fa-info-circle"></i>';infoBtn.title="شرح المحاضرة";
+    infoBtn.onclick=(e)=>{e.stopPropagation();showExplanation(sec.originalName)};
+    const cntSpan=document.createElement('span');cntSpan.className='cnt';cntSpan.textContent=sec.questions.length;
+    div.appendChild(nameSpan);div.appendChild(infoBtn);div.appendChild(cntSpan);
+    div.onclick=()=>{div.classList.toggle('active');updateToggleAllButton();};
+    wrap.appendChild(div);
+  });
+  updateToggleAllButton();
+}
+
+function toggleAllSections(){
+  const items=document.querySelectorAll('#section-list .section-item');
+  const allActive=Array.from(items).every(el=>el.classList.contains('active'));
+  items.forEach(el=>el.classList.toggle('active',!allActive));updateToggleAllButton();
+}
+function updateToggleAllButton(){
+  const items=document.querySelectorAll('#section-list .section-item');
+  const activeCount=document.querySelectorAll('#section-list .section-item.active').length;
+  const btn=document.getElementById('selectAllBtn');
+  if(btn)btn.textContent=(activeCount===items.length&&items.length>0)?'إلغاء الكل':'تحديد الكل';
+}
+
+function toggleOptions(t){
+  document.querySelectorAll('.sub-options').forEach(e=>e.classList.remove('show'));
+  const target=document.getElementById(t);if(target)target.classList.add('show');
+  document.querySelectorAll('.action-icon').forEach(e=>e.classList.remove('active'));
+  const activeIcon=document.querySelector(`.action-icon[data-target="${t}"]`);if(activeIcon)activeIcon.classList.add('active');
+}
+function closeAllOptions(){
+  document.querySelectorAll('.sub-options').forEach(e=>e.classList.remove('show'));
+  document.querySelectorAll('.action-icon').forEach(e=>e.classList.remove('active'));
+  const def=document.querySelector('.action-icon[data-target="modeOptions"]');if(def)def.classList.add('active');
+}
+function selectMode(m){state.mode=m;document.querySelectorAll('#modeOptions .action-btn').forEach(e=>{e.classList.toggle('active',e.dataset.mode===m)});closeAllOptions();}
+function selectOrder(o){state.order=o;document.querySelectorAll('#orderOptions .action-btn').forEach(e=>{e.classList.toggle('active',e.dataset.order===o)});closeAllOptions();}
+function selectTranslate(t){state.showTranslation=(t==='yes');document.querySelectorAll('#langOptions .action-btn').forEach(e=>{e.classList.toggle('active',e.dataset.translate===t)});closeAllOptions();}
+function selectTimer(s){state.timerSeconds=s;document.querySelectorAll('#timerOptions .action-btn').forEach(e=>{e.classList.toggle('active',parseInt(e.dataset.timer)===s)});closeAllOptions();}
+function toggleQuizTranslation(){
+  state.showTranslation=!state.showTranslation;
+  document.querySelectorAll('#langOptions .action-btn').forEach(e=>{e.classList.toggle('active',(e.dataset.translate==='yes')===state.showTranslation)});
+  renderQuestion();
+}
+
+function enterApp(){
+  try{
+    document.getElementById('main-screen').style.display='block';
+    buildSectionList();updateHomeStats();
+    setTheme(safeGetLS('informatics_theme')||'dark');
+    if(window.speechSynthesis){
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged=()=>{window.speechSynthesis.getVoices();maleEnglishVoice=null;};
+    }
+  }catch(err){
+    const wrap=document.getElementById('section-list');
+    if(wrap)wrap.innerHTML='<div style="color:#ef5350;padding:10px;">خطأ: '+err.message+'</div>';
+  }
+}
+function goHome(){stopTimer();document.getElementById('screen-quiz').classList.remove('active');document.getElementById('screen-results').classList.remove('active');document.getElementById('main-screen').style.display='block';updateHomeStats();}
+function quitQuiz(){if(confirm('متأكد تخرج؟')){stopTimer();goHome();}}
+function resetProgress(){if(confirm('متأكد تصفير التقدم؟')){safeRemoveLS(LS_KEY);updateHomeStats();}}
+function shuffleArray(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+
+function startQuiz(){
+  const activeEls=document.querySelectorAll('#section-list .section-item.active');
+  if(activeEls.length===0){alert('اختار محاضرة واحدة على الأقل!');return;}
+  const idxs=Array.from(activeEls).map(el=>parseInt(el.dataset.idx));
+  let qs=[];
+  idxs.forEach(idx=>{const sec=QUESTION_BANK[idx];sec.questions.forEach(q=>{qs.push(Object.assign({},q,{sectionName:sec.name,options:q.options.map(o=>Object.assign({},o))}));});});
+  if(qs.length===0){alert('هذه المحاضرة لا تحتوي على أسئلة!');return;}
+  if(state.order==='random')qs=shuffleArray(qs);
+  state.quizQuestions=qs;state.currentIndex=0;state.correctCount=0;state.wrongCount=0;state.sessionMistakes=[];
+  state.questionStates=qs.map(()=>({selectedOption:null,answered:false,isCorrect:false,chosenIdxs:[]}));
+  document.getElementById('main-screen').style.display='none';
+  document.getElementById('screen-quiz').classList.add('active');
+  document.getElementById('screen-results').classList.remove('active');
+  const gridContainer=document.getElementById('questions-grid-container');if(gridContainer)gridContainer.classList.remove('show');
+  renderQuestion();
+}
+
+function reviewMistakes(){
+  const p=loadProgress(),mistakeKeys=Object.keys(p.mistakes||{});
+  if(mistakeKeys.length===0){alert('مفيش أخطاء للمراجعة 🎉');return;}
+  let qs=[];
+  QUESTION_BANK.forEach(sec=>{sec.questions.forEach(q=>{if(mistakeKeys.includes(qid(sec.name,q.num)))qs.push(Object.assign({},q,{sectionName:sec.name,options:q.options.map(o=>Object.assign({},o))}));});});
+  if(qs.length===0){alert('مفيش أخطاء للمراجعة 🎉');return;}
+  state.quizQuestions=qs;state.currentIndex=0;state.correctCount=0;state.wrongCount=0;state.sessionMistakes=[];state.mode='practice';
+  state.questionStates=qs.map(()=>({selectedOption:null,answered:false,isCorrect:false,chosenIdxs:[]}));
+  document.getElementById('main-screen').style.display='none';
+  document.getElementById('screen-quiz').classList.add('active');
+  document.getElementById('screen-results').classList.remove('active');
+  const gridContainer=document.getElementById('questions-grid-container');if(gridContainer)gridContainer.classList.remove('show');
+  renderQuestion();
+}
+
+function startWeakSectionQuiz(){
+  const link=document.getElementById('weakLink'),idx=link.dataset.sectionIdx;if(idx===undefined)return;
+  document.querySelectorAll('#section-list .section-item').forEach(el=>{el.classList.toggle('active',el.dataset.idx==idx)});
+  startQuiz();
+}
+
+function toggleQuestionsGrid(){
+  const gridContainer=document.getElementById('questions-grid-container');if(!gridContainer)return;
+  gridContainer.classList.toggle('show');
+  if(gridContainer.classList.contains('show'))renderGridButtons();
+}
+function renderGridButtons(){
+  const gridDiv=document.getElementById('q-grid-buttons');if(!gridDiv)return;gridDiv.innerHTML='';
+  state.quizQuestions.forEach((_,i)=>{
+    const btn=document.createElement('button');btn.className='grid-btn';btn.textContent=i+1;
+    const st=state.questionStates[i];
+    if(i===state.currentIndex)btn.classList.add('current');
+    if(st.answered)btn.classList.add(st.isCorrect?'answered-correct':'answered-wrong');
+    btn.onclick=()=>goToSpecificQuestion(i);
+    gridDiv.appendChild(btn);
+  });
+}
+function goToSpecificQuestion(targetIndex){if(targetIndex>=0&&targetIndex<state.quizQuestions.length){state.currentIndex=targetIndex;renderQuestion();}}
+
+function renderQuestion(){
+  const idx=state.currentIndex,q=state.quizQuestions[idx],st=state.questionStates[idx];
+  state.answered=st.answered;state.selectedOptionIdx=st.selectedOption;
+  const total=state.quizQuestions.length;
+  document.getElementById('quiz-position').innerHTML=`<i class="fas fa-question-circle"></i> ${idx+1} / ${total}`;
+  document.getElementById('quiz-score').innerHTML=`<i class="fas fa-check-circle" style="color:var(--success);"></i> ${state.correctCount} <i class="fas fa-times-circle" style="color:var(--danger);margin-right:4px;"></i> ${state.wrongCount}`;
+  document.getElementById('progress-bar').style.width=(idx/total*100)+'%';
+  const qIsTF=isTFQuestion(q);
+  let tagText=`<i class="fas fa-tag"></i> ${q.sectionName}`;
+  if(qIsTF)tagText+=` <span class="tf-badge">صواب / خطأ</span>`;
+  document.getElementById('q-section-tag').innerHTML=tagText;
+  const transBtn=document.getElementById('btn-toggle-trans');
+  if(transBtn)transBtn.innerHTML=state.showTranslation?'<i class="fas fa-language"></i> ترجمة: مفعّلة':'<i class="fas fa-language"></i> EN فقط';
+  const gridToggleBtn=document.getElementById('btn-toggle-grid'),gridContainer=document.getElementById('questions-grid-container');
+  if(state.mode==='practice'){if(gridToggleBtn)gridToggleBtn.style.display='inline-flex';if(gridContainer&&gridContainer.classList.contains('show'))renderGridButtons();}
+  else{if(gridToggleBtn)gridToggleBtn.style.display='none';if(gridContainer)gridContainer.classList.remove('show');}
+
+  wrapEnglishText(`${q.num}. ${q.en}`,document.getElementById('q-en'));
+  const qAr=document.getElementById('q-ar');
+  if(state.showTranslation){qAr.textContent=q.ar||'جارٍ الترجمة...';qAr.style.display='block';}
+  else{qAr.textContent='';qAr.style.display='none';}
+
+  const opts=document.getElementById('options');opts.innerHTML='';
+  q.options.forEach((opt,i)=>{
+    const div=document.createElement('div');div.className='option';div.dataset.idx=i;div.dataset.correct=opt.correct?'true':'false';
+    const enDiv=document.createElement('div');enDiv.className='opt-en';wrapEnglishText(opt.en,enDiv);
+    const arDiv=document.createElement('div');arDiv.className='opt-ar';arDiv.textContent=opt.ar||'';arDiv.style.display=state.showTranslation&&opt.ar?'block':'none';
+    const mark=document.createElement('span');mark.className='mark';
+    div.appendChild(enDiv);div.appendChild(arDiv);div.appendChild(mark);
+    div.onclick=()=>onOptionClick(i);
+    opts.appendChild(div);
+  });
+
+  if(state.showTranslation){
+    if(!q._transDone){
+      ensureQuestionTranslated(q).then(()=>{
+        if(state.currentIndex!==idx||!state.showTranslation)return;
+        qAr.textContent=q.ar||'';qAr.style.display=q.ar?'block':'none';
+        const optEls=opts.querySelectorAll('.option');
+        q.options.forEach((opt,i)=>{
+          if(optEls[i]){const arEl=optEls[i].querySelector('.opt-ar');if(arEl){arEl.textContent=opt.ar||'';arEl.style.display=opt.ar?'block':'none';}}
+        });
+      });
+    }
+    prefetchNextQuestions(idx);
+  }
+
+  if(st.answered){
+    const chosenIdxs=st.chosenIdxs;
+    document.querySelectorAll('.option').forEach(el=>{
+      const idxOpt=parseInt(el.dataset.idx);el.classList.add('disabled');
+      if(el.dataset.correct==='true'){el.classList.add('correct');el.querySelector('.mark').textContent='✅';}
+      else if(chosenIdxs.includes(idxOpt)){el.classList.add('wrong');el.querySelector('.mark').textContent='❌';}
+      if(st.selectedOption===idxOpt)el.classList.add('selected');
+    });
+    const fb=document.getElementById('feedback');fb.classList.remove('hidden');fb.className='feedback-box '+(st.isCorrect?'correct':'wrong');
+    let correctLabels=qIsTF?((q.options.find(o=>o.correct)||{}).en==='True'?'True (صواب)':'False (خطأ)'):q.options.map(o=>o.correct?o.en:null).filter(Boolean).join('، ');
+    fb.innerHTML=`<div class="fb-title">${st.isCorrect?'✅ صحيحة!':'❌ غلط'}</div>${!st.isCorrect?`<div><b>الصح:</b> ${correctLabels}</div>`:''}<div class="fb-explain">💡 ${q.explain_ar||''}</div>`;
+  }else{
+    document.getElementById('feedback').classList.add('hidden');document.getElementById('feedback').innerHTML='';
+  }
+
+  const nextBtn=document.getElementById('btn-next'),prevBtn=document.getElementById('btn-prev');
+  prevBtn.disabled=(idx===0);const isLast=idx===total-1;
+  if(state.mode==='test'){
+    nextBtn.disabled=(state.selectedOptionIdx===null);
+    nextBtn.innerHTML=`<i class="fas fa-arrow-left"></i> ${isLast?'إنهاء ✅':'التالي ⬅️'}`;
+    nextBtn.onclick=()=>{
+      if(state.selectedOptionIdx===null)return;
+      if(!state.answered){
+        const q2=state.quizQuestions[state.currentIndex];
+        const isCorrect=isTFQuestion(q2)?((document.querySelector(`.option[data-idx="${state.selectedOptionIdx}"]`)||{}).dataset?.correct==='true'):q2.options[state.selectedOptionIdx].correct;
+        finalizeAnswer(isCorrect,[state.selectedOptionIdx]);
+      }
+      if(state.currentIndex<state.quizQuestions.length-1){state.currentIndex++;renderQuestion();}else{showResults();}
+    };
+  }else{
+    nextBtn.disabled=false;
+    nextBtn.innerHTML=isLast?`<i class="fas fa-flag-checkered"></i> إنهاء`:`<i class="fas fa-arrow-left"></i> التالي`;
+    nextBtn.onclick=()=>{
+      if(!state.answered){alert('يجب اختيار إجابة أولاً!');return;}
+      if(state.currentIndex<state.quizQuestions.length-1){state.currentIndex++;renderQuestion();}else{showResults();}
+    };
+  }
+  if(!st.answered)startTimer();else stopTimer();
+}
+
+function onOptionClick(i){
+  if(state.answered)return;state.selectedOptionIdx=i;
+  document.querySelectorAll('.option').forEach(el=>el.classList.remove('selected'));
+  document.querySelector(`.option[data-idx="${i}"]`).classList.add('selected');
+  if(state.mode==='test'){document.getElementById('btn-next').disabled=false;}else{submitSingleAnswer(i);}
+}
+function submitSingleAnswer(i){
+  const q=state.quizQuestions[state.currentIndex];
+  const isCorrect=isTFQuestion(q)?(document.querySelector(`.option[data-idx="${i}"]`).dataset.correct==='true'):!!q.options[i].correct;
+  finalizeAnswer(isCorrect,[i]);
+}
+function finalizeAnswer(isCorrect,chosenIdxs){
+  stopTimer();state.answered=true;
+  const idx=state.currentIndex,st=state.questionStates[idx],q=state.quizQuestions[idx];
+  st.selectedOption=state.selectedOptionIdx;st.answered=true;st.isCorrect=isCorrect;st.chosenIdxs=chosenIdxs;
+  if(isCorrect)state.correctCount++;else state.wrongCount++;
+  const p=loadProgress(),key=qid(q.sectionName,q.num);
+  p.attempted=p.attempted||{};p.mistakes=p.mistakes||{};p.attempted[key]=isCorrect?'correct':'wrong';
+  if(isCorrect)delete p.mistakes[key];else p.mistakes[key]=true;
+  saveProgress(p);
+  if(!isCorrect)state.sessionMistakes.push({q,chosenIdxs});
+  renderQuestion();
+}
+function previousQuestion(){if(state.currentIndex>0){state.currentIndex--;renderQuestion();}}
+
+function showResults(){
+  stopTimer();document.getElementById('screen-quiz').classList.remove('active');
+  document.getElementById('screen-results').classList.add('active');document.getElementById('mistakes-list-wrap').classList.add('hidden');
+  const total=state.quizQuestions.length,pct=total?Math.round((state.correctCount/total)*100):0;
+  document.getElementById('result-pct').textContent=pct+'%';document.getElementById('score-circle').style.setProperty('--pct',pct);
+  document.getElementById('res-total').textContent=total;document.getElementById('res-correct').textContent=state.correctCount;document.getElementById('res-wrong').textContent=state.wrongCount;
+  document.getElementById('btn-show-mistakes').classList.toggle('hidden',state.sessionMistakes.length===0);
+}
+
+function showMistakesList(){
+  const wrap=document.getElementById('mistakes-list-wrap'),list=document.getElementById('mistakes-list');list.innerHTML='';
+  state.sessionMistakes.forEach(m=>{
+    const q=m.q;let yourAnswers='',correctAnswers='';
+    if(isTFQuestion(q)){
+      yourAnswers=m.chosenIdxs.length?m.chosenIdxs.map(i=>i===0?'True (صواب)':'False (خطأ)').join('، '):'لم تُجب (انتهى الوقت)';
+      correctAnswers=(q.options.find(o=>o.correct)||{}).en==='True'?'True (صواب)':'False (خطأ)';
+    }else{
+      yourAnswers=m.chosenIdxs.length?m.chosenIdxs.map(i=>q.options[i].en).join('، '):'لم تُجب (انتهى الوقت)';
+      correctAnswers=q.options.map(o=>o.correct?o.en:null).filter(Boolean).join('، ');
+    }
+    const div=document.createElement('div');div.className='mistake-item';
+    const toggleBtn=document.createElement('button');toggleBtn.className='mistake-toggle';toggleBtn.innerHTML='<i class="fas fa-eye"></i> عرض السؤال';
+    const detailDiv=document.createElement('div');detailDiv.className='mistake-detail';detailDiv.style.display='none';
+    const qHeader=document.createElement('div');qHeader.style.fontWeight='bold';qHeader.style.marginBottom='8px';qHeader.textContent=`${q.num}. ${q.en}`;detailDiv.appendChild(qHeader);
+    if(q.ar){const qArH=document.createElement('div');qArH.style.color='var(--muted)';qArH.style.marginBottom='8px';qArH.style.direction='rtl';qArH.style.textAlign='right';qArH.textContent=q.ar;detailDiv.appendChild(qArH);}
+    const optsDiv=document.createElement('div');
+    q.options.forEach((opt,i)=>{
+      const row=document.createElement('div');row.className='opt-row';
+      const label=document.createElement('span');label.className='opt-label';label.textContent=opt.en+(opt.ar?' — '+opt.ar:'');
+      const status=document.createElement('span');status.className='opt-status';
+      if(opt.correct){status.textContent='✅';status.style.color='var(--success)';}
+      else if(m.chosenIdxs.includes(i)){status.textContent='❌';status.style.color='var(--danger)';}
+      else{status.textContent='—';status.style.color='var(--muted)';}
+      row.appendChild(label);row.appendChild(status);optsDiv.appendChild(row);
+    });
+    detailDiv.appendChild(optsDiv);
+    const explainDiv=document.createElement('div');explainDiv.style.marginTop='8px';explainDiv.style.fontStyle='italic';explainDiv.style.color='var(--muted)';explainDiv.style.direction='rtl';explainDiv.style.textAlign='right';explainDiv.textContent=`💡 ${q.explain_ar||''}`;detailDiv.appendChild(explainDiv);
+    toggleBtn.onclick=()=>{const vis=detailDiv.style.display!=='none';detailDiv.style.display=vis?'none':'block';toggleBtn.innerHTML=vis?'<i class="fas fa-eye"></i> عرض السؤال':'<i class="fas fa-eye-slash"></i> إخفاء السؤال';};
+    div.innerHTML=`<div class="m-q">${q.num}. ${q.en}</div><div class="m-you">إجابتك: ${yourAnswers}</div><div class="m-correct">الصح: ${correctAnswers}</div>`;
+    div.appendChild(toggleBtn);div.appendChild(detailDiv);list.appendChild(div);
+  });
+  wrap.classList.remove('hidden');wrap.scrollIntoView({behavior:'smooth'});
+}
+
+function stopTimer(){if(state.timerInterval){clearInterval(state.timerInterval);state.timerInterval=null;}const b=document.getElementById('timer-badge');b.classList.add('hidden');b.classList.remove('warn','danger');}
+function startTimer(){stopTimer();if(!state.timerSeconds||state.timerSeconds<=0)return;const badge=document.getElementById('timer-badge');state.timeLeft=state.timerSeconds;badge.classList.remove('hidden','warn','danger');badge.innerHTML=`<i class="fas fa-hourglass-half"></i> ${state.timeLeft}`;state.timerInterval=setInterval(()=>{state.timeLeft--;if(state.timeLeft<=0){badge.innerHTML=`<i class="fas fa-hourglass-end"></i> 0`;stopTimer();onTimeUp();return;}badge.innerHTML=`<i class="fas fa-hourglass-half"></i> ${state.timeLeft}`;badge.classList.toggle('warn',state.timeLeft<=3&&state.timeLeft>1);badge.classList.toggle('danger',state.timeLeft<=1);},1000);}
+function onTimeUp(){if(state.answered)return;finalizeAnswer(false,state.selectedOptionIdx!==null?[state.selectedOptionIdx]:[]);}
+
+function getMaleEnglishVoice(){if(maleEnglishVoice)return maleEnglishVoice;const voices=window.speechSynthesis.getVoices();let v=voices.find(v=>v.lang==='en-US'&&v.name.toLowerCase().includes('male'))||voices.find(v=>v.lang==='en-GB'&&v.name.toLowerCase().includes('male'))||voices.find(v=>v.lang.startsWith('en')&&v.name.toLowerCase().includes('male'))||voices.find(v=>v.lang.startsWith('en'));maleEnglishVoice=v;return v;}
+function speakWord(word){if(!window.speechSynthesis)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(word);u.lang='en-US';u.rate=.7;u.pitch=1;u.volume=1;const v=getMaleEnglishVoice();if(v)u.voice=v;window.speechSynthesis.speak(u);}
+
+function wrapEnglishText(text,container){
+  if(!container)return;container.innerHTML='';if(!text)return;
+  const tempDiv=document.createElement('div');tempDiv.innerHTML=text;
+  function processNodes(node,target){
+    node.childNodes.forEach(child=>{
+      if(child.nodeType===Node.TEXT_NODE){
+        const words=child.textContent.split(' ');
+        words.forEach((word,idx)=>{
+          if(word.trim()===''){target.appendChild(document.createTextNode(' '));return;}
+          const span=document.createElement('span');span.className='word-en';span.textContent=word;
+          let pressTimer=null;
+          const startPress=()=>{pressTimer=setTimeout(()=>{speakWord(word.replace(/[^a-zA-Z]/g,''));span.classList.add('speaking');setTimeout(()=>span.classList.remove('speaking'),600);const hint=document.getElementById('speech-hint');hint.textContent=`🔊 ${word}`;hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),900);},800);};
+          const endPress=()=>{if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}};
+          span.addEventListener('pointerdown',startPress);span.addEventListener('pointerup',endPress);span.addEventListener('pointerleave',endPress);
+          span.addEventListener('touchstart',startPress,{passive:true});span.addEventListener('touchend',endPress,{passive:true});
+          target.appendChild(span);
+          if(idx<words.length-1)target.appendChild(document.createTextNode(' '));
+        });
+      }else if(child.nodeType===Node.ELEMENT_NODE){
+        const clone=child.cloneNode(false);target.appendChild(clone);processNodes(child,clone);
+      }
+    });
+  }
+  processNodes(tempDiv,container);
+}
+
+document.addEventListener('click',function(e){const btn=e.target.closest('.big-btn');if(!btn)return;const rect=btn.getBoundingClientRect();const ripple=document.createElement('span');ripple.className='ripple';const size=Math.max(rect.width,rect.height);ripple.style.width=ripple.style.height=size+'px';ripple.style.left=(e.clientX-rect.left-size/2)+'px';ripple.style.top=(e.clientY-rect.top-size/2)+'px';btn.appendChild(ripple);setTimeout(()=>ripple.remove(),500);});
+
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',enterApp);}else{enterApp();}
+</script>
+</body>
+</html>
